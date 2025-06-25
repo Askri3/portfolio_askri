@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+/* === Fond général & police === */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Share Tech Mono', 'Consolas', 'Orbitron', monospace;
+  background: linear-gradient(135deg, #012456 0%, #003366 100%);
+  color: #eaf6ff;
+  min-height: 100vh;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  opacity: 0.08;
+  z-index: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" fill="%23012356"/><circle cx="20" cy="20" r="1.5" fill="%2300aaff"/></svg>');
+}
+
+/* Pour que le contenu soit au-dessus du Matrix */
+header, nav, main, footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* === Liens === */
+a {
+  color: #0078d7;
+  text-decoration: none;
+  transition: color 0.2s;
+  text-shadow: 0 0 8px #00336644;
+}
+a:hover {
+  color: #00aaff;
+  text-shadow: 0 0 12px #00aaff, 0 0 4px #0078d7;
+}
+
+/* === Header === */
+header {
+  background: #012456;
+  padding: 30px 20px 18px;
+  text-align: center;
+  border-bottom: 3px solid #0078d7;
+  box-shadow: 0 0 25px #00336688, 0 0 60px #0078d744 inset;
+}
+header h1 {
+  margin: 0;
+  font-size: 2.7rem;
+  color: #eaf6ff;
+  letter-spacing: 2px;
+  text-shadow: 0 0 18px #003366, 0 0 4px #0078d7;
+  border-right: 3px solid #0078d7;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 2.5s steps(30, end) forwards, blink-caret 0.75s step-end infinite;
+}
+header p {
+  margin: 10px 0 0;
+  color: #00aaff;
+  font-size: 1.2rem;
+  text-shadow: 0 0 8px #0078d7cc;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes blink-caret {
+  50% { border-color: transparent; }
+}
+
+/* === Navigation === */
+nav {
+  background: #181a1b;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-bottom: 1px solid #003366;
+  box-shadow: 0 2px 16px #00336633;
+}
+nav a {
+  padding: 14px 22px;
+  font-weight: 700;
+  font-family: 'Share Tech Mono', monospace;
+  color: #eaf6ff;
+  transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+  border-radius: 8px 8px 0 0;
+  margin: 0 2px;
+}
+nav a:hover,
+nav a.active {
+  background: #00336644;
+  color: #00aaff;
+  box-shadow: 0 4px 12px #0078d7aa;
+}
+
+/* === Main Content === */
+.terminal-main {
+  max-width: 980px;
+  margin: 38px auto 60px;
+  background: #0b1a2f;
+  border-radius: 16px;
+  padding: 44px 32px 32px 32px;
+  box-shadow: 0 0 60px #003366cc, 0 0 120px #0078d722 inset;
+  border: 2.5px solid #0078d7;
+  position: relative;
+  z-index: 1;
+}
+
+/* === Sections === */
+section {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s;
+  margin-bottom: 36px;
+}
+section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Titres & Listes === */
+h2 {
+  color: #00aaff;
+  border-left: 5px solid #0078d7;
+  padding-left: 14px;
+  margin-bottom: 22px;
+  letter-spacing: 1px;
+  font-family: 'Share Tech Mono', monospace;
+  text-shadow: 0 0 8px #00336688;
+}
+h3 {
+  color: #eaf6ff;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+ul, p, li {
+  font-family: 'Share Tech Mono', monospace;
+  color: #eaf6ff;
+}
+
+.project {
+  margin-bottom: 28px;
+}
+
+/* === Dashboard Cards === */
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.card {
+  background: #14284a;
+  border: 1.5px solid #0078d7;
+  border-radius: 10px;
+  padding: 22px;
+  margin: 12px;
+  flex: 1 1 230px;
+  color: #eaf6ff;
+  box-shadow: 0 0 24px #00336688, 0 0 8px #0078d744;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 0 32px #0078d7cc, 0 0 16px #003366cc;
+}
+.card h3 {
+  margin-top: 0;
+  color: #00aaff;
+  text-shadow: 0 0 8px #003366;
+}
+
+/* === Compétences === */
+.competences-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.competence-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  text-align: center;
+  color: #00aaff;
+  background: #181a1b;
+  border-radius: 8px;
+  padding: 12px 0;
+  box-shadow: 0 0 10px #00336655;
+}
+.competence-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 10px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px #0078d7);
+}
+
+/* === Certifications === */
+.certification-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.certification-item {
+  background: #14284a !important;
+  box-shadow: 0 0 18px #00336688;
+  padding: 22px 32px;
+  border-radius: 12px;
+  margin: 0 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #eaf6ff;
+  min-width: 220px;
+}
+.certification-item p {
+  margin: 14px 0 0 0;
+  text-align: center;
+  line-height: 1.5;
+  font-size: 1.08em;
+}
+.certification-item strong {
+  display: block;
+  font-size: 1.12em;
+  margin-bottom: 6px;
+}
+.certification-item span {
+  display: block;
+  font-size: 1em;
+  color: #00aaff;
+  margin-top: 4px;
+}
+
+/* === Jeux interactifs === */
+.jeux-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 24px;
+}
+.jeu-btn {
+  background: linear-gradient(90deg, #003366 0%, #0078d7 100%);
+  color: #eaf6ff;
+  padding: 13px 28px;
+  border: none;
+  border-radius: 13px;
+  font-weight: bold;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+  box-shadow: 0 0 16px #00336688, 0 0 6px #0078d7cc;
+  text-shadow: 0 0 6px #23272e55;
+}
+.jeu-btn:hover {
+  background: linear-gradient(90deg, #0078d7 0%, #003366 100%);
+  color: #ffffff;
+  box-shadow: 0 0 28px #0078d7cc, 0 0 12px #003366cc;
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* === Carrousel des icônes === */
+.carousel-container {
+  overflow: hidden;
+  width: 100%;
+  background: #14284a;
+  padding: 22px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 18px #00336688;
+}
+.carousel-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 25s linear infinite;
+}
+.tech-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 120px;
+  margin: 0 20px;
+  text-align: center;
+  color: #00aaff;
+}
+.tech-icon img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 8px;
+  object-fit: contain;
+  display: block;
+}
+.tech-icon span {
+  display: block;
+  margin-top: 4px;
+  font-size: 1.02em;
+  color: #00aaff;
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* === Responsive === */
+@media (max-width: 700px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  nav a {
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #00336633;
+  }
+  nav a:first-child {
+    border-top: none;
+  }
+  .terminal-main {
+    margin: 15px 6px 40px;
+    padding: 16px 6px;
+  }
+  header h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* === Footer === */
+footer {
+  background: #181a1b;
+  color: #0078d7;
+  padding: 12px;
+  text-align: center;
+  border-top: 2px solid #003366;
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 1px;
+  box-shadow: 0 -2px 12px #00336644;
+}
+footer a {
+  color: #00aaff;
+  text-decoration: none;
+  text-shadow: 0 0 6px #0078d7cc;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+footer a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px #ffffffcc;
+}
+
+#cmd-bg {
+  position: fixed;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.cmd-line {
+  position: absolute;
+  left: 32px;
+  width: calc(100vw - 64px);
+  color: #00aaff;
+  font-family: 'Share Tech Mono', 'Consolas', monospace;
+  font-size: 1.08rem;
+  opacity: 0.22;
+  text-shadow: 0 0 8px #00aaff, 0 0 2px #003366;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+}
+@media (max-width: 700px) {
+  .cmd-line {
+    left: 8px;
+    width: calc(100vw - 16px);
+    font-size: 0.92rem;
+  }
+}
