@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Veille - Fuites de Données en France | Portfolio Eliès ASKRI</title>
+  <meta name="description" content="Veille technologique sur les fuites de bases de données en France, BreachForums, et la protection des données personnelles." />
+  <meta name="keywords" content="fuite données, BreachForums, cybersécurité, RGPD, France, FBI, data breach" />
+  <meta name="author" content="Eliès ASKRI" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* === THEME HACKER ROUGE === */
+    :root {
+      --hacker-red: #ff0033;
+      --hacker-red-dark: #cc0029;
+      --hacker-red-light: #ff3355;
+      --hacker-bg: #0a0a0a;
+      --hacker-bg-card: #1a0a0a;
+      --hacker-text: #ffcccc;
+      --hacker-glow: 0 0 24px rgba(255, 0, 51, 0.5);
+      --hacker-glow-strong: 0 0 32px rgba(255, 0, 51, 0.8);
+    }
+
+    body {
+      background: linear-gradient(135deg, #0a0505 0%, #150808 100%) !important;
+    }
+
+    /* Styles spécifiques à cette page */
+    .page-container {
+      max-width: 1100px;
+      margin: 20px auto 32px;
+      background: #0d0808;
+      border-radius: 16px;
+      padding: 32px 20px;
+      box-shadow: 0 0 60px rgba(255, 0, 51, 0.3), 0 0 120px rgba(255, 51, 85, 0.12) inset;
+      border: 2.5px solid var(--hacker-red);
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: linear-gradient(90deg, var(--hacker-red), var(--hacker-red-light));
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-bottom: 24px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 0 8px rgba(255, 0, 51, 0.4);
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 16px rgba(255, 0, 51, 0.6);
+      color: white;
+    }
+
+    .hero-section {
+      background: linear-gradient(135deg, #1a0808 0%, rgba(255, 0, 51, 0.15) 100%);
+      padding: 32px;
+      border-radius: 12px;
+      margin-bottom: 32px;
+      border: 2px solid var(--hacker-red);
+      box-shadow: 0 0 24px rgba(255, 0, 51, 0.3);
+      text-align: center;
+    }
+
+    .hero-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 0 12px var(--hacker-red));
+    }
+
+    .hero-section h1 {
+      color: var(--hacker-red-light);
+      font-size: 2rem;
+      margin: 0 0 12px 0;
+      text-shadow: 0 0 12px rgba(255, 0, 51, 0.5);
+    }
+
+    .hero-section .subtitle {
+      color: #eaf6ff;
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin: 0;
+    }
+
+    .alert-banner {
+      background: linear-gradient(90deg, rgba(255, 0, 51, 0.2), rgba(255, 170, 0, 0.2));
+      border: 1px solid var(--hacker-red);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .alert-banner svg {
+      flex-shrink: 0;
+    }
+
+    .alert-banner p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .info-card {
+      background: #1a0808;
+      border: 1px solid var(--hacker-red);
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: 0 0 24px rgba(255, 0, 51, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--hacker-glow-strong);
+    }
+
+    .info-card.danger {
+      border-color: var(--hacker-red);
+      background: linear-gradient(135deg, #1a0808 0%, rgba(255, 0, 51, 0.1) 100%);
+    }
+
+    .info-card.warning {
+      border-color: #ffaa00;
+      background: linear-gradient(135deg, #1a0808 0%, rgba(255, 170, 0, 0.1) 100%);
+    }
+
+    .info-card.success {
+      border-color: #00cc66;
+      background: linear-gradient(135deg, #1a0808 0%, rgba(0, 204, 102, 0.1) 100%);
+    }
+
+    .card-icon-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .card-icon-header h3 {
+      margin: 0;
+      color: var(--hacker-red-light);
+      font-size: 1.3rem;
+    }
+
+    .info-card.danger .card-icon-header h3 {
+      color: var(--hacker-red-light);
+    }
+
+    .info-card.warning .card-icon-header h3 {
+      color: #ffaa00;
+    }
+
+    .info-card.success .card-icon-header h3 {
+      color: #00cc66;
+    }
+
+    .info-card p {
+      margin: 12px 0;
+      line-height: 1.7;
+    }
+
+    .info-card ul {
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .info-card li {
+      padding: 8px 0 8px 24px;
+      position: relative;
+    }
+
+    .info-card li::before {
+      content: ">";
+      position: absolute;
+      left: 0;
+      color: var(--hacker-red-light);
+      font-weight: bold;
+    }
+
+    .info-card.danger li::before {
+      color: var(--hacker-red-light);
+    }
+
+    .info-card.warning li::before {
+      color: #ffaa00;
+    }
+
+    .info-card.success li::before {
+      color: #00cc66;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+      margin: 24px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--hacker-red), #ffaa00, var(--hacker-red-light));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 24px;
+      padding: 16px;
+      background: rgba(255, 0, 51, 0.1);
+      border-radius: 8px;
+      border-left: 3px solid var(--hacker-red-light);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 20px;
+      width: 12px;
+      height: 12px;
+      background: var(--hacker-red-light);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--hacker-red-light);
+    }
+
+    .timeline-item.critical::before {
+      background: var(--hacker-red);
+      box-shadow: 0 0 8px var(--hacker-red);
+    }
+
+    .timeline-item.critical {
+      border-left-color: var(--hacker-red);
+    }
+
+    .timeline-date {
+      color: var(--hacker-red-light);
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .timeline-item.critical .timeline-date {
+      color: var(--hacker-red);
+    }
+
+    .flow-diagram {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 24px 0;
+      padding: 20px;
+      background: rgba(255, 0, 51, 0.05);
+      border-radius: 10px;
+    }
+
+    .flow-step {
+      background: #1a0808;
+      border: 1px solid var(--hacker-red);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      min-width: 140px;
+      flex: 1;
+    }
+
+    .flow-step.danger {
+      border-color: var(--hacker-red);
+      background: rgba(255, 0, 51, 0.1);
+    }
+
+    .flow-step-icon {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .flow-step p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .flow-arrow {
+      color: var(--hacker-red-light);
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .stat-item {
+      background: rgba(255, 0, 51, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid rgba(255, 0, 51, 0.3);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--hacker-red-light);
+      display: block;
+      text-shadow: 0 0 12px rgba(255, 0, 51, 0.5);
+    }
+
+    .stat-label {
+      color: #eaf6ff;
+      font-size: 0.95rem;
+      margin-top: 8px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 24px 0;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #1a0808;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 0, 51, 0.3);
+    }
+
+    .compare-table th {
+      background: rgba(255, 0, 51, 0.2);
+      color: var(--hacker-red-light);
+      font-weight: bold;
+    }
+
+    .compare-table tr:hover {
+      background: rgba(255, 0, 51, 0.1);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .badge.critical {
+      background: rgba(255, 0, 51, 0.2);
+      color: var(--hacker-red-light);
+      border: 1px solid var(--hacker-red);
+    }
+
+    .badge.warning {
+      background: rgba(255, 170, 0, 0.2);
+      color: #ffaa00;
+      border: 1px solid #ffaa00;
+    }
+
+    .badge.info {
+      background: rgba(255, 51, 85, 0.2);
+      color: var(--hacker-red-light);
+      border: 1px solid var(--hacker-red-light);
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, #1a0808 0%, rgba(0, 204, 102, 0.15) 100%);
+      border: 2px solid #00cc66;
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 32px;
+      text-align: center;
+    }
+
+    .cta-section h3 {
+      color: #00cc66;
+      margin: 0 0 16px 0;
+    }
+
+    .cta-link {
+      display: inline-block;
+      margin: 8px;
+      padding: 12px 24px;
+      background: linear-gradient(90deg, #00cc66, #00aaff);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 16px rgba(0, 204, 102, 0.6);
+      color: white;
+    }
+
+    .sources-section {
+      margin-top: 32px;
+      padding: 20px;
+      background: rgba(255, 0, 51, 0.05);
+      border-radius: 10px;
+      border-left: 3px solid var(--hacker-red);
+    }
+
+    .sources-section h4 {
+      color: var(--hacker-red-light);
+      margin: 0 0 12px 0;
+    }
+
+    .sources-section a {
+      display: inline-block;
+      margin: 4px 12px 4px 0;
+      color: var(--hacker-red-light);
+    }
+
+    /* Titre H2 en rouge */
+    h2 {
+      color: var(--hacker-red-light) !important;
+      border-left-color: var(--hacker-red) !important;
+    }
+
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 1.5rem;
+      }
+
+      .section-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-diagram {
+        flex-direction: column;
+      }
+
+      .flow-arrow {
+        transform: rotate(90deg);
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .page-container {
+        margin: 10px 6px;
+        padding: 20px 12px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .alert-banner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* === BACKGROUND HACKER ROUGE - COMMANDES POWERSHELL === */
+    #cmd-bg .cmd-line {
+      color: var(--hacker-red) !important;
+      text-shadow: 0 0 8px var(--hacker-red), 0 0 2px #330000 !important;
+    }
+  </style>
+</head>
+<body>
+<div id="cmd-bg"></div>
+
+<div class="page-container">
+  <a href="index.html#veille" class="back-btn" onclick="localStorage.setItem('lastSection', 'veille');">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 10H5M5 10L9 6M5 10L9 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Retour au portfolio
+  </a>
+
+  <div class="hero-section">
+    <div class="hero-icon">
+      <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="36" stroke="#ff0033" stroke-width="3" fill="none"/>
+        <path d="M25 30h30M25 40h30M25 50h20" stroke="#ff0033" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="60" cy="60" r="14" fill="#ff0033"/>
+        <path d="M55 60h10M60 55v10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1>Fuites de Bases de Données en France</h1>
+    <p class="subtitle">BreachForums, saisies FBI/DOJ et protection des données personnelles</p>
+  </div>
+
+  <div class="alert-banner">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 3L2 28h28L16 3z" stroke="#ffaa00" stroke-width="2" fill="rgba(255,170,0,0.2)"/>
+      <path d="M16 12v8M16 23v2" stroke="#ffaa00" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <p><strong>Alerte :</strong> En 2024, plus de 100 millions de données personnelles de Français ont été exposées suite à des fuites massives. Vos données sont peut-être déjà en vente.</p>
+  </div>
+
+  <!-- BreachForums Section -->
+  <h2 style="color: #ff3355; border-left: 5px solid #ff0033; padding-left: 14px; margin-bottom: 24px;">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 8px;">
+      <circle cx="12" cy="12" r="10" stroke="#ff0033" stroke-width="2" fill="none"/>
+      <path d="M12 7v5l3 3" stroke="#ff0033" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    BreachForums - Le marché noir des données volées
+  </h2>
+
+  <div class="section-grid">
+    <div class="info-card danger">
+      <div class="card-icon-header">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect x="4" y="8" width="24" height="18" rx="2" stroke="#ff0033" stroke-width="2" fill="none"/>
+          <path d="M4 14h24" stroke="#ff0033" stroke-width="2"/>
+          <circle cx="8" cy="11" r="1" fill="#ff0033"/>
+          <circle cx="12" cy="11" r="1" fill="#ff0033"/>
+        </svg>
+        <h3>Qu'est-ce que BreachForums ?</h3>
+      </div>
+      <p>BreachForums est un <strong>forum du dark web</strong> où des hackers vendent, échangent et partagent des bases de données volées.</p>
+      <p>C'est le <strong>successeur de RaidForums</strong>, fermé par le FBI en avril 2022. Le site est devenu la principale plateforme mondiale pour le commerce de données volées.</p>
+      <ul>
+        <li>Vente de bases de données complètes</li>
+        <li>Échange d'identifiants volés</li>
+        <li>Tutoriels de hacking</li>
+        <li>Services de piratage sur commande</li>
+      </ul>
+    </div>
+
+    <div class="info-card danger">
+      <div class="card-icon-header">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M16 4l-12 8v12l12 4 12-4V12L16 4z" stroke="#ff0033" stroke-width="2" fill="none"/>
+          <path d="M16 28V16M4 12l12 4 12-4" stroke="#ff0033" stroke-width="2"/>
+        </svg>
+        <h3>Saisie par le FBI/DOJ (Mai 2024)</h3>
+      </div>
+      <p>En <strong>mai 2024</strong>, le FBI en collaboration avec des agences européennes (dont la gendarmerie française) a saisi BreachForums.</p>
+      <ul>
+        <li><strong>Baphomet</strong> (fondateur) arrêté</li>
+        <li><strong>ShinyHunters</strong> (admin) interpellé</li>
+        <li>Bandeau "THIS WEBSITE HAS BEEN SEIZED" affiché</li>
+        <li>Serveurs et domaines confisqués</li>
+      </ul>
+      <p style="color: #ffaa00; margin-top: 16px;"><strong>Mais...</strong> le forum a resurgi quelques semaines plus tard sous un nouveau domaine, prouvant la résilience de cet écosystème.</p>
+    </div>
+  </div>
+
+  <!-- Fuites en France -->
+  <h2 style="color: #ff3355; border-left: 5px solid #ff0033; padding-left: 14px; margin: 32px 0 24px;">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 8px;">
+      <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#ff0033" stroke-width="2" fill="none"/>
+    </svg>
+    Les fuites majeures en France (2024)
+  </h2>
+
+  <div class="stats-grid">
+    <div class="stat-item">
+      <span class="stat-number">43M</span>
+      <div class="stat-label">Dossiers France Travail</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">19M</span>
+      <div class="stat-label">Clients Free touchés</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">33M</span>
+      <div class="stat-label">Assurés santé exposés</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">100M+</span>
+      <div class="stat-label">Total données exposées</div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Entreprise</th>
+          <th>Données exposées</th>
+          <th>Impact</th>
+          <th>Gravité</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>France Travail / Pôle Emploi</strong></td>
+          <td>Nom, NIR (n° sécu), adresse, téléphone</td>
+          <td>43 millions de personnes</td>
+          <td><span class="badge critical">Critique</span></td>
+        </tr>
+        <tr>
+          <td><strong>Free</strong></td>
+          <td>Nom, email, IBAN, adresse</td>
+          <td>19 millions de clients</td>
+          <td><span class="badge critical">Critique</span></td>
+        </tr>
+        <tr>
+          <td><strong>Viamedis / Almerys</strong></td>
+          <td>Données de santé, n° sécu</td>
+          <td>33 millions d'assurés</td>
+          <td><span class="badge critical">Critique</span></td>
+        </tr>
+        <tr>
+          <td><strong>SFR</strong></td>
+          <td>Nom, email, données client</td>
+          <td>Plusieurs millions</td>
+          <td><span class="badge warning">Élevé</span></td>
+        </tr>
+        <tr>
+          <td><strong>Boulanger / Cultura / Truffaut</strong></td>
+          <td>Nom, adresse, historique achats</td>
+          <td>Prestataire commun compromis</td>
+          <td><span class="badge warning">Élevé</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Comment les données fuitent -->
+  <h2 style="color: #ffaa00; border-left: 5px solid #ffaa00; padding-left: 14px; margin: 32px 0 24px;">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 8px;">
+      <path d="M12 2v20M2 12h20" stroke="#ffaa00" stroke-width="2"/>
+      <circle cx="12" cy="12" r="3" stroke="#ffaa00" stroke-width="2" fill="none"/>
+    </svg>
+    Comment les données fuitent - Le cycle d'une fuite
+  </h2>
+
+  <div class="flow-diagram">
+    <div class="flow-step">
+      <div class="flow-step-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect x="6" y="4" width="20" height="24" rx="2" stroke="#ff3355" stroke-width="2" fill="none"/>
+          <path d="M10 10h12M10 16h12M10 22h8" stroke="#ff3355" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <p>Entreprise vulnérable</p>
+    </div>
+    <div class="flow-arrow">></div>
+    <div class="flow-step danger">
+      <div class="flow-step-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M16 4L4 28h24L16 4z" stroke="#ff0033" stroke-width="2" fill="none"/>
+          <path d="M16 12v8M16 24v2" stroke="#ff0033" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <p>Attaque (SQLi, Phishing, Prestataire)</p>
+    </div>
+    <div class="flow-arrow">></div>
+    <div class="flow-step">
+      <div class="flow-step-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect x="4" y="8" width="24" height="16" rx="2" stroke="#ffaa00" stroke-width="2" fill="none"/>
+          <path d="M4 14h24" stroke="#ffaa00" stroke-width="2"/>
+        </svg>
+      </div>
+      <p>Base extraite et chiffrée</p>
+    </div>
+    <div class="flow-arrow">></div>
+    <div class="flow-step danger">
+      <div class="flow-step-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="12" stroke="#ff0033" stroke-width="2" fill="none"/>
+          <path d="M12 14c0-2.2 1.8-4 4-4s4 1.8 4 4c0 1.5-.8 2.8-2 3.5V20h-4v-2.5c-1.2-.7-2-2-2-3.5z" stroke="#ff0033" stroke-width="2" fill="none"/>
+          <rect x="14" y="22" width="4" height="2" rx="1" fill="#ff0033"/>
+        </svg>
+      </div>
+      <p>Vendue sur BreachForums</p>
+    </div>
+    <div class="flow-arrow">></div>
+    <div class="flow-step danger">
+      <div class="flow-step-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M16 4c-6.6 0-12 5.4-12 12s5.4 12 12 12 12-5.4 12-12S22.6 4 16 4z" stroke="#ff0033" stroke-width="2" fill="none"/>
+          <path d="M20 12l-8 8M12 12l8 8" stroke="#ff0033" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <p>Phishing / Usurpation</p>
+    </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="info-card warning">
+      <div class="card-icon-header">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M16 4L4 28h24L16 4z" stroke="#ffaa00" stroke-width="2" fill="none"/>
+          <path d="M16 12v8M16 24v2" stroke="#ffaa00" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3>Vecteurs d'attaque principaux</h3>
+      </div>
+      <ul>
+        <li><strong>Tiers de confiance compromis</strong> - Prestataires cloud mal configurés (cas Free, Boulanger)</li>
+        <li><strong>Injection SQL</strong> - Failles dans les formulaires web</li>
+        <li><strong>Credential stuffing</strong> - Réutilisation de mots de passe volés</li>
+        <li><strong>Phishing ciblé</strong> - Emails frauduleux aux employés</li>
+        <li><strong>Ransomware + exfiltration</strong> - Double extorsion : payer ne suffit plus</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <div class="card-icon-header">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="10" r="6" stroke="#ff3355" stroke-width="2" fill="none"/>
+          <path d="M8 28c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#ff3355" stroke-width="2" fill="none"/>
+        </svg>
+        <h3>Qui sont les attaquants ?</h3>
+      </div>
+      <ul>
+        <li><strong>ShinyHunters</strong> - Groupe franco-marocain, responsable de nombreuses fuites</li>
+        <li><strong>Groupes ransomware</strong> - LockBit, BlackCat, Clop</li>
+        <li><strong>Script kiddies</strong> - Utilisent des outils automatisés</li>
+        <li><strong>Acteurs étatiques</strong> - Espionnage industriel et politique</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Directives de protection -->
+  <h2 style="color: #00cc66; border-left: 5px solid #00cc66; padding-left: 14px; margin: 32px 0 24px;">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 8px;">
+      <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6l-8-4z" stroke="#00cc66" stroke-width="2" fill="none"/>
+      <path d="M9 12l2 2 4-4" stroke="#00cc66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Comment se protéger - Directives concrètes
+  </h2>
+
+  <div class="section-grid">
+    <div class="info-card success">
+      <div class="card-icon-header">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="12" r="6" stroke="#00cc66" stroke-width="2" fill="none"/>
+          <path d="M8 28c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#00cc66" stroke-width="2" fill="none"/>
+        </svg>
+        <h3>Pour les particuliers</h3>
+      </div>
+      <ul>
+        <li><strong>Vérifier vos emails</strong> sur <a href="https://haveibeenpwned.com" target="_blank" rel="noopener" style="color: #00cc66;">haveibeenpwned.com</a></li>
+        <li><strong>Mot de passe unique</strong> par service (utilisez Bitwarden ou KeePass)</li>
+        <li><strong>Activer le MFA</strong> (authentification à deux facteurs) partout</li>
+        <li><strong>Email alias</strong> avec SimpleLogin ou Proton</li>
+        <li><strong>Surveiller vos IBAN</strong> après une fuite bancaire</li>
+        <li><strong>Ne jamais réutiliser</strong> un mot de passe compromis</li>
+      </ul>
+    </div>
+
+    <div class="info-card success">
+      <div class="card-icon-header">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect x="4" y="8" width="24" height="18" rx="2" stroke="#00cc66" stroke-width="2" fill="none"/>
+          <path d="M4 14h24" stroke="#00cc66" stroke-width="2"/>
+          <circle cx="8" cy="11" r="1" fill="#00cc66"/>
+          <circle cx="12" cy="11" r="1" fill="#00cc66"/>
+        </svg>
+        <h3>Pour les entreprises</h3>
+      </div>
+      <ul>
+        <li><strong>Audit RGPD</strong> + tests de pénétration réguliers</li>
+        <li><strong>Principe du moindre privilège</strong> pour les accès</li>
+        <li><strong>Chiffrement</strong> des données au repos et en transit</li>
+        <li><strong>Plan de réponse</strong> à incident documenté</li>
+        <li><strong>Notification CNIL</strong> obligatoire sous 72h</li>
+        <li><strong>Formation</strong> des employés au phishing</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="cta-section">
+    <h3>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 8px;">
+        <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6l-8-4z" stroke="#00cc66" stroke-width="2" fill="none"/>
+      </svg>
+      Vérifiez si vos données ont fuité
+    </h3>
+    <p>Tapez votre email sur ces outils pour savoir si vous êtes concerné :</p>
+    <a href="https://haveibeenpwned.com" target="_blank" rel="noopener" class="cta-link">Have I Been Pwned</a>
+    <a href="https://monitor.firefox.com" target="_blank" rel="noopener" class="cta-link">Firefox Monitor</a>
+  </div>
+
+  <!-- Conclusion -->
+  <div class="info-card" style="margin-top: 32px; border: 2px solid #ff3355;">
+    <div class="card-icon-header">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <circle cx="16" cy="16" r="12" stroke="#ff3355" stroke-width="2" fill="none"/>
+        <path d="M16 10v8M16 22v2" stroke="#ff3355" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <h3>Pourquoi c'est important ?</h3>
+    </div>
+    <p>La CNIL a infligé plus de <strong>100 millions d'euros d'amendes RGPD</strong> depuis 2019 en France. Malgré cela, les fuites se multiplient.</p>
+    <p>Chaque fuite peut mener à :</p>
+    <ul>
+      <li><strong>Usurpation d'identité</strong> - Crédits contractés à votre nom</li>
+      <li><strong>Phishing ciblé</strong> - Arnaques personnalisées avec vos vraies infos</li>
+      <li><strong>Fraude bancaire</strong> - Prélèvements non autorisés avec votre IBAN</li>
+      <li><strong>Chantage</strong> - Menaces de divulgation de données sensibles</li>
+    </ul>
+    <p style="color: #ff3355; font-weight: bold; margin-top: 16px;">La vigilance n'est plus une option, c'est une nécessité.</p>
+  </div>
+
+  <!-- Sources -->
+  <div class="sources-section">
+    <h4>
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="vertical-align: middle; margin-right: 8px;">
+        <path d="M3 4h14v12H3z" stroke="#ff0033" stroke-width="1.5" fill="none"/>
+        <path d="M7 8h6M7 12h4" stroke="#ff0033" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      Sources et références
+    </h4>
+    <p>
+      <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a>
+      <a href="https://www.cybermalveillance.gouv.fr" target="_blank" rel="noopener">Cybermalveillance.gouv.fr</a>
+      <a href="https://www.bleepingcomputer.com" target="_blank" rel="noopener">BleepingComputer</a>
+      <a href="https://www.zataz.com" target="_blank" rel="noopener">ZATAZ</a>
+      <a href="https://www.lemondeinformatique.fr" target="_blank" rel="noopener">Le Monde Informatique</a>
+      <a href="https://haveibeenpwned.com" target="_blank" rel="noopener">Have I Been Pwned</a>
+    </p>
+  </div>
+
+  <div style="margin-top: 32px; text-align: center;">
+    <a href="index.html#veille" class="back-btn" onclick="localStorage.setItem('lastSection', 'veille');">
+      Retourner à l'onglet Veille
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  <p>Eliès ASKRI - Étudiant en BTS SIO, option SISR à l'IPSSI</p>
+  <p>Email : <a href="mailto:askri.elies@gmail.com">askri.elies@gmail.com</a> | LinkedIn : <a href="https://www.linkedin.com/in/elies-askri" target="_blank" rel="noopener">Eliès ASKRI</a></p>
+  <p style="font-size:0.85rem; color:#ff0033;">&copy; 2025 Eliès ASKRI - Tous droits réservés</p>
+</footer>
+
+<script>
+// === ANIMATION BACKGROUND HACKER - COMMANDES POWERSHELL ===
+const CONFIG = {
+  nbCommandLines: 12,
+  commands: [
+    'PS C:\\> Get-ADUser -Filter * | Export-Csv users.csv',
+    'PS C:\\> Invoke-WebRequest -Uri "http://target.com" -Method POST',
+    'PS C:\\> Get-Process | Where-Object {$_.CPU -gt 100}',
+    'PS C:\\> Get-EventLog -LogName Security -Newest 50',
+    'PS C:\\> Test-NetConnection -ComputerName target -Port 445',
+    'PS C:\\> Get-WmiObject Win32_ComputerSystem | Select *',
+    'PS C:\\> Invoke-Command -ComputerName DC01 -ScriptBlock {whoami}',
+    'PS C:\\> Get-ChildItem -Path C:\\ -Recurse -Filter *.txt',
+    'PS C:\\> New-PSSession -ComputerName Server01 -Credential $cred',
+    'PS C:\\> Get-ADGroupMember -Identity "Domain Admins"',
+    'PS C:\\> Set-ExecutionPolicy Bypass -Scope Process -Force',
+    'PS C:\\> IEX (New-Object Net.WebClient).DownloadString($url)',
+    'PS C:\\> Get-NetTCPConnection | Where State -eq Established',
+    'PS C:\\> Disable-WindowsOptionalFeature -Online -FeatureName *',
+    'PS C:\\> Get-LocalGroupMember -Group Administrators',
+    'PS C:\\> Get-ADComputer -Filter * -Properties LastLogonDate',
+    'PS C:\\> New-ItemProperty -Path HKLM:\\SOFTWARE -Name Key',
+    'PS C:\\> Invoke-Mimikatz -DumpCreds',
+    'PS C:\\> Get-Credential | Export-Clixml creds.xml',
+    'PS C:\\> Enter-PSSession -ComputerName DC01'
+  ]
+};
+
+let cmdLines = [];
+
+function createCmdLine(text, y) {
+  const div = document.createElement('div');
+  div.className = 'cmd-line';
+  div.textContent = text;
+  div.style.top = y + 'px';
+  return div;
+}
+
+function randomCmd() {
+  return CONFIG.commands[Math.floor(Math.random() * CONFIG.commands.length)];
+}
+
+function setupCmdBg() {
+  const bg = document.getElementById('cmd-bg');
+  if (!bg) return;
+  bg.innerHTML = '';
+  cmdLines = [];
+  const h = window.innerHeight;
+  for (let i = 0; i < CONFIG.nbCommandLines; i++) {
+    const y = Math.round(i * (h / CONFIG.nbCommandLines));
+    const cmd = randomCmd();
+    const cmdLine = createCmdLine(cmd, y);
+    bg.appendChild(cmdLine);
+    cmdLines.push(cmdLine);
+  }
+}
+
+function animateCmdBg() {
+  const h = window.innerHeight;
+  cmdLines.forEach(cmdLine => {
+    let y = parseFloat(cmdLine.style.top);
+    y += 0.25 + Math.random() * 0.15;
+    if (y > h) {
+      y = -24;
+      cmdLine.textContent = randomCmd();
+    }
+    cmdLine.style.top = y + 'px';
+  });
+  requestAnimationFrame(animateCmdBg);
+}
+
+setupCmdBg();
+requestAnimationFrame(animateCmdBg);
+window.addEventListener('resize', setupCmdBg);
+</script>
+</body>
+</html>
