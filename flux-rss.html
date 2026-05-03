@@ -53,6 +53,23 @@
       color: white;
     }
 
+    .page-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .page-topbar .back-btn {
+      margin-bottom: 0;
+    }
+
+    .page-language-toggle {
+      min-width: 120px;
+    }
+
     .hero-section {
       background: linear-gradient(135deg, var(--bg-card) 0%, rgba(255, 140, 0, 0.15) 100%);
       padding: 32px;
@@ -493,12 +510,15 @@
 <div id="cmd-bg"></div>
 
 <div class="page-container">
-  <a href="index.html#veille" class="back-btn" onclick="localStorage.setItem('lastSection', 'veille');">
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 10H5M5 10L9 6M5 10L9 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    Retour au portfolio
-  </a>
+  <div class="page-topbar">
+    <a href="index.html#veille" class="back-btn" onclick="localStorage.setItem('lastSection', 'veille');">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 10H5M5 10L9 6M5 10L9 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="back-btn-label">Retour au portfolio</span>
+    </a>
+    <button type="button" id="page-language-toggle" class="back-btn page-language-toggle" aria-label="Switch this page to English">English</button>
+  </div>
 
   <div class="hero-section">
     <div class="hero-icon">
@@ -523,10 +543,10 @@
         <path d="M15 9c0 3.314-2.686 6-6 6s-6-2.686-6-6 2.686-6 6-6c1.657 0 3.156.672 4.243 1.757" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         <path d="M12 3l3 3-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      Actualiser
+      <span class="refresh-btn-label">Actualiser</span>
     </button>
     <div class="auto-refresh-toggle">
-      <span>Auto-refresh (5 min)</span>
+      <span class="auto-refresh-label">Auto-refresh (5 min)</span>
       <div class="toggle-switch active" id="autoRefreshToggle" onclick="toggleAutoRefresh()"></div>
     </div>
     <span class="last-update" id="lastUpdate">Dernière mise à jour : --:--</span>
@@ -534,16 +554,16 @@
 
   <div class="flux-categories">
     <button class="category-btn cyber active" onclick="filterCategory('all')">
-      Tous
+      <span class="category-btn-label">Tous</span>
     </button>
     <button class="category-btn cyber" onclick="filterCategory('cyber')">
-      Cybersécurité
+      <span class="category-btn-label">Cybersécurité</span>
     </button>
     <button class="category-btn infra" onclick="filterCategory('infra')">
-      Infrastructure
+      <span class="category-btn-label">Infrastructure</span>
     </button>
     <button class="category-btn ia" onclick="filterCategory('ia')">
-      Intelligence Artificielle
+      <span class="category-btn-label">Intelligence Artificielle</span>
     </button>
   </div>
 
@@ -600,7 +620,7 @@
         <path d="M7 7c5.523 0 10 4.477 10 10" stroke="#ff8c00" stroke-width="2" stroke-linecap="round"/>
         <path d="M7 12c2.761 0 5 2.239 5 5" stroke="#ff8c00" stroke-width="2" stroke-linecap="round"/>
       </svg>
-      Sources RSS utilisées
+      <span class="sources-title-label">Sources RSS utilisées</span>
     </h3>
     <div class="sources-grid">
       <div class="source-item cyber">
@@ -644,7 +664,7 @@
 
   <div style="margin-top: 32px; text-align: center;">
     <a href="index.html#veille" class="back-btn" onclick="localStorage.setItem('lastSection', 'veille');">
-      Retourner à l'onglet Veille
+      <span class="back-btn-label">Retourner à l'onglet Veille</span>
     </a>
   </div>
 
@@ -657,6 +677,107 @@
 </footer>
 
 <script>
+// === Configuration langue ===
+const LANGUAGE_STORAGE_KEY = 'portfolioLanguage';
+let pageLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY) === 'en' ? 'en' : 'fr';
+
+const PAGE_TRANSLATIONS = {
+  fr: {
+    title: 'Flux RSS - Veille Technologique | Portfolio Eliès ASKRI',
+    description: 'Flux RSS en temps réel sur la cybersécurité, l\'infrastructure IT et l\'intelligence artificielle.',
+    toggle: 'English',
+    toggleAria: 'Switch this page to English',
+    back: 'Retour au portfolio',
+    heroTitle: 'Flux RSS - Veille Technologique',
+    heroSubtitle: 'Actualités en temps réel sur la Cybersécurité, l\'Infrastructure IT et l\'Intelligence Artificielle',
+    live: 'Mise à jour automatique',
+    refresh: 'Actualiser',
+    autoRefresh: 'Auto-refresh (5 min)',
+    lastUpdate: 'Dernière mise à jour : --:--',
+    categories: ['Tous', 'Cybersécurité', 'Infrastructure', 'Intelligence Artificielle'],
+    sectionTitles: ['Cybersécurité', 'Infrastructure IT', 'Intelligence Artificielle'],
+    loading: 'Chargement des flux...',
+    sourcesTitle: 'Sources RSS utilisées',
+    backWatch: 'Retourner à l\'onglet Veille',
+    timeMinutes: 'Il y a {n} min',
+    timeHours: 'Il y a {n}h',
+    loadErrorTitle: 'Impossible de charger les flux pour le moment.',
+    loadErrorHint: 'Vérifiez votre connexion ou réessayez plus tard.',
+    loadErrorShort: 'Erreur de chargement'
+  },
+  en: {
+    title: 'RSS Feed Hub - Technology Watch | Eliès ASKRI Portfolio',
+    description: 'Live RSS feeds focused on cybersecurity, IT infrastructure, and artificial intelligence.',
+    toggle: 'Français',
+    toggleAria: 'Switch this page back to French',
+    back: 'Back to the portfolio',
+    heroTitle: 'RSS Feed Hub - Technology Watch',
+    heroSubtitle: 'Live updates on cybersecurity, IT infrastructure, and artificial intelligence',
+    live: 'Automatic updates enabled',
+    refresh: 'Refresh',
+    autoRefresh: 'Auto-refresh (every 5 min)',
+    lastUpdate: 'Last updated: --:--',
+    categories: ['All', 'Cybersecurity', 'Infrastructure', 'Artificial Intelligence'],
+    sectionTitles: ['Cybersecurity', 'IT Infrastructure', 'Artificial Intelligence'],
+    loading: 'Loading feeds...',
+    sourcesTitle: 'RSS sources in use',
+    backWatch: 'Back to the Technology Watch section',
+    timeMinutes: '{n} min ago',
+    timeHours: '{n}h ago',
+    loadErrorTitle: 'Unable to load the feeds right now.',
+    loadErrorHint: 'Please check your connection or try again later.',
+    loadErrorShort: 'Loading error'
+  }
+};
+
+function applyPageLanguage(lang) {
+  const translation = PAGE_TRANSLATIONS[lang] || PAGE_TRANSLATIONS.fr;
+  const metaDescription = document.querySelector('meta[name="description"]');
+
+  pageLanguage = lang;
+  document.documentElement.lang = lang === 'en' ? 'en' : 'fr';
+  document.title = translation.title;
+  if (metaDescription) {
+    metaDescription.setAttribute('content', translation.description);
+  }
+
+  document.querySelectorAll('.back-btn-label')[0].textContent = translation.back;
+  document.querySelectorAll('.back-btn-label')[1].textContent = translation.backWatch;
+  document.getElementById('page-language-toggle').textContent = translation.toggle;
+  document.getElementById('page-language-toggle').setAttribute('aria-label', translation.toggleAria);
+  document.querySelector('.hero-section h1').textContent = translation.heroTitle;
+  document.querySelector('.hero-section .subtitle').textContent = translation.heroSubtitle;
+  document.querySelector('.live-indicator span:last-child').textContent = translation.live;
+  document.querySelector('.refresh-btn-label').textContent = translation.refresh;
+  document.querySelector('.auto-refresh-label').textContent = translation.autoRefresh;
+  document.getElementById('lastUpdate').textContent = translation.lastUpdate;
+  document.querySelectorAll('.category-btn-label').forEach((label, index) => {
+    label.textContent = translation.categories[index];
+  });
+  document.querySelectorAll('.flux-header h3').forEach((title, index) => {
+    title.textContent = translation.sectionTitles[index];
+  });
+  document.querySelectorAll('.flux-loading span').forEach((label) => {
+    label.textContent = translation.loading;
+  });
+  document.querySelector('.sources-title-label').textContent = translation.sourcesTitle;
+
+  localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
+}
+
+function initPageLanguageToggle() {
+  const toggle = document.getElementById('page-language-toggle');
+  if (!toggle) return;
+
+  applyPageLanguage(pageLanguage);
+
+  toggle.addEventListener('click', () => {
+    pageLanguage = pageLanguage === 'fr' ? 'en' : 'fr';
+    applyPageLanguage(pageLanguage);
+    refreshAllFeeds();
+  });
+}
+
 // === Configuration des flux RSS ===
 const RSS_FEEDS = {
   cyber: [
@@ -687,15 +808,16 @@ function formatDate(dateString) {
   const date = new Date(dateString);
   const now = new Date();
   const diff = now - date;
+  const translation = PAGE_TRANSLATIONS[pageLanguage] || PAGE_TRANSLATIONS.fr;
 
   if (diff < 3600000) { // moins d'une heure
     const minutes = Math.floor(diff / 60000);
-    return `Il y a ${minutes} min`;
+    return translation.timeMinutes.replace('{n}', minutes);
   } else if (diff < 86400000) { // moins d'un jour
     const hours = Math.floor(diff / 3600000);
-    return `Il y a ${hours}h`;
+    return translation.timeHours.replace('{n}', hours);
   } else {
-    return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+    return date.toLocaleDateString(pageLanguage === 'en' ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'short' });
   }
 }
 
@@ -730,6 +852,7 @@ async function loadCategoryFeeds(category) {
   const feeds = RSS_FEEDS[category];
 
   try {
+    const translation = PAGE_TRANSLATIONS[pageLanguage] || PAGE_TRANSLATIONS.fr;
     const allItems = [];
 
     for (const feed of feeds) {
@@ -743,8 +866,8 @@ async function loadCategoryFeeds(category) {
     if (allItems.length === 0) {
       container.innerHTML = `
         <div class="flux-error">
-          <p>Impossible de charger les flux pour le moment.</p>
-          <p style="font-size: 0.85rem; opacity: 0.7;">Vérifiez votre connexion ou réessayez plus tard.</p>
+          <p>${translation.loadErrorTitle}</p>
+          <p style="font-size: 0.85rem; opacity: 0.7;">${translation.loadErrorHint}</p>
         </div>
       `;
       return;
@@ -783,9 +906,10 @@ async function loadCategoryFeeds(category) {
 
   } catch (error) {
     console.error(`Erreur catégorie ${category}:`, error);
+    const translation = PAGE_TRANSLATIONS[pageLanguage] || PAGE_TRANSLATIONS.fr;
     container.innerHTML = `
       <div class="flux-error">
-        <p>Erreur de chargement</p>
+        <p>${translation.loadErrorShort}</p>
       </div>
     `;
   }
@@ -804,8 +928,9 @@ async function refreshAllFeeds() {
 
   // Mettre à jour l'heure
   const now = new Date();
+  const translation = PAGE_TRANSLATIONS[pageLanguage] || PAGE_TRANSLATIONS.fr;
   document.getElementById('lastUpdate').textContent =
-    `Dernière mise à jour : ${now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}`;
+    `${translation.lastUpdate.split(':')[0]}: ${now.toLocaleTimeString(pageLanguage === 'en' ? 'en-GB' : 'fr-FR', { hour: '2-digit', minute: '2-digit' })}`;
 
   btn.classList.remove('loading');
   btn.disabled = false;
@@ -918,6 +1043,7 @@ function animateCmdBg() {
 
 // === Initialisation ===
 document.addEventListener('DOMContentLoaded', () => {
+  initPageLanguageToggle();
   setupCmdBg();
   requestAnimationFrame(animateCmdBg);
   window.addEventListener('resize', setupCmdBg);

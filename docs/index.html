@@ -155,17 +155,23 @@
   <p>Étudiant en BTS SIO, option SISR</p>
 </header>
 <nav role="navigation" aria-label="Navigation principale">
-  <a href="#presentation" data-section="presentation">Présentation</a>
-  <a href="#bts-sio" data-section="bts-sio">BTS SIO SISR</a>
-  <a href="#dashboard" data-section="dashboard">Dashboard</a>
-  <a href="#competences" data-section="competences">Compétences</a>
-  <a href="#projets" data-section="projets">Projets</a>
-  <a href="#entreprise" data-section="entreprise">Mes entreprises</a>
-  <a href="#situations" data-section="situations">Situations E6</a>
-  <a href="#veille" data-section="veille">Veille</a>
-  <a href="#tableau" data-section="tableau">Tableau de synthèse</a>
-  <a href="#cv" data-section="cv">CV</a>
-  <a href="#contact" data-section="contact">Contact</a>
+  <div class="nav-links">
+    <a href="#presentation" data-section="presentation">Présentation</a>
+    <a href="#bts-sio" data-section="bts-sio">BTS SIO SISR</a>
+    <a href="#dashboard" data-section="dashboard">Dashboard</a>
+    <a href="#competences" data-section="competences">Compétences</a>
+    <a href="#projets" data-section="projets">Projets</a>
+    <a href="#entreprise" data-section="entreprise">Mes entreprises</a>
+    <a href="#situations" data-section="situations">Situations E6</a>
+    <a href="#veille" data-section="veille">Veille</a>
+    <a href="#tableau" data-section="tableau">Tableau de synthèse</a>
+    <a href="#cv" data-section="cv">CV</a>
+    <a href="#contact" data-section="contact">Contact</a>
+  </div>
+  <button type="button" id="language-toggle" class="language-toggle" aria-label="Switch portfolio to English">
+    <span class="language-toggle-flag" aria-hidden="true">🇬🇧</span>
+    <span class="language-toggle-text">English</span>
+  </button>
 </nav>
 <main class="terminal-main">
   <section id="presentation">
@@ -385,11 +391,14 @@
           <h3>Compétences Réseaux</h3>
         </div>
         <ul>
-          <li>VLAN et segmentation logique</li>
-          <li>Routage et routage inter-VLAN</li>
-          <li>Configuration Cisco et switching</li>
+          <li>VLAN et segmentation logique du réseau</li>
+          <li>Routage, routage inter-VLAN et configuration des routeurs</li>
+          <li>Configuration Cisco, switching et administration des switches</li>
           <li>Adressage IP et DHCP</li>
-          <li>Diagnostic réseau, pare-feu et PuTTY</li>
+          <li>Diagnostic réseau, pare-feu et utilisation de PuTTY</li>
+          <li>Haute disponibilité réseau</li>
+          <li>Conception d’un plan d’infrastructure réseau</li>
+          <li>Gestion des autorisations d’accès aux ressources réseaux et aux applications</li>
         </ul>
       </article>
 
@@ -401,11 +410,20 @@
           <h3>Compétences Systèmes</h3>
         </div>
         <ul>
-          <li>Windows Server, AD DS et administration Active Directory</li>
+          <li>Windows Server, AD DS</li>
+          <li>Installation et configuration d’un serveur Windows 2022</li>
+          <li>Installation et configuration de clients Windows et Linux</li>
           <li>GPO, gestion des utilisateurs et déploiement de postes</li>
-          <li>Virtualisation : VMware, Hyper-V, VirtualBox</li>
-          <li>Sauvegarde Veeam et automatisation PowerShell</li>
+          <li>Gestion de Microsoft Office 365</li>
+          <li>Création, modification et désactivation de comptes utilisateurs dans Active Directory</li>
+          <li>Virtualisation : VMware, Hyper-V, VirtualBox et Proxmox</li>
           <li>Environnements Azure et support en production</li>
+          <li>Backup Veeam, restauration des données</li>
+          <li>Maintenance et assistance technique aux clients à distance</li>
+          <li>Diagnostic et résolution des pannes matérielles</li>
+          <li>Analyse des difficultés techniques remontées par les utilisateurs</li>
+          <li>Installation, maintenance et déploiement à distance des logiciels</li>
+          <li>Gestion et mise à jour du stock informatique</li>
         </ul>
       </article>
     </div>
@@ -631,7 +649,7 @@
             <path d="M10 2L10 14M10 14L6 10M10 14L14 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="rotate(-90 10 10)"/>
             <path d="M3 18h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          Découvrir cette veille
+          <span class="watch-link-label">Découvrir cette veille</span>
         </a>
       </div>
     </div>
@@ -657,7 +675,7 @@
             <path d="M6 6c4.418 0 8 3.582 8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             <path d="M6 10c2.209 0 4 1.791 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          Accéder aux flux RSS
+          <span class="watch-link-label">Accéder aux flux RSS</span>
         </a>
       </div>
     </div>

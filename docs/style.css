@@ -139,6 +139,16 @@ nav {
   padding: 10px 16px;
   border-bottom: 2px solid var(--primary-blue);
   box-shadow: 0 4px 20px rgba(0, 51, 102, 0.4);
+  position: relative;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin: 0 auto;
 }
 
 nav a {
@@ -179,6 +189,41 @@ nav a.active::after {
   height: 2px;
   background: var(--accent-cyan);
   box-shadow: 0 0 8px var(--accent-cyan);
+}
+
+.language-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  color: var(--text-light);
+  background: rgba(0, 120, 215, 0.18);
+  border: 1px solid rgba(0, 170, 255, 0.32);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.language-toggle:hover {
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(0, 170, 255, 0.28);
+}
+
+.language-toggle-flag {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.language-toggle-text {
+  display: inline-block;
 }
 
 /* === Main Content === */
@@ -2219,6 +2264,16 @@ li {
 
   nav a.active::after {
     display: none;
+  }
+
+  .nav-links {
+    width: 100%;
+  }
+
+  .language-toggle {
+    position: static;
+    transform: none;
+    margin-top: 8px;
   }
 
   .terminal-main {

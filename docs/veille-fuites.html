@@ -62,6 +62,23 @@
       color: white;
     }
 
+    .page-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .page-topbar .back-btn {
+      margin-bottom: 0;
+    }
+
+    .page-language-toggle {
+      min-width: 120px;
+    }
+
     .hero-section {
       background: linear-gradient(135deg, #1a0808 0%, rgba(255, 0, 51, 0.15) 100%);
       padding: 32px;
@@ -499,12 +516,15 @@
 <div id="cmd-bg"></div>
 
 <div class="page-container">
-  <a href="index.html#veille" class="back-btn" onclick="localStorage.setItem('lastSection', 'veille');">
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 10H5M5 10L9 6M5 10L9 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    Retour au portfolio
-  </a>
+  <div class="page-topbar">
+    <a href="index.html#veille" class="back-btn" onclick="localStorage.setItem('lastSection', 'veille');">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 10H5M5 10L9 6M5 10L9 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="back-btn-label">Retour au portfolio</span>
+    </a>
+    <button type="button" id="page-language-toggle" class="back-btn page-language-toggle" aria-label="Switch this page to English">English</button>
+  </div>
 
   <div class="hero-section">
     <div class="hero-icon">
@@ -848,7 +868,7 @@
 
   <div style="margin-top: 32px; text-align: center;">
     <a href="index.html#veille" class="back-btn" onclick="localStorage.setItem('lastSection', 'veille');">
-      Retourner à l'onglet Veille
+      <span class="back-btn-label">Retourner à l'onglet Veille</span>
     </a>
   </div>
 
@@ -861,6 +881,284 @@
 </footer>
 
 <script>
+const LANGUAGE_STORAGE_KEY = 'portfolioLanguage';
+let pageLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY) === 'en' ? 'en' : 'fr';
+
+const PAGE_TRANSLATIONS = {
+  fr: {
+    title: 'Veille - Fuites de Données en France | Portfolio Eliès ASKRI',
+    description: 'Veille technologique sur les fuites de bases de données en France, BreachForums, et la protection des données personnelles.',
+    toggle: 'English',
+    toggleAria: 'Switch this page to English',
+    back: 'Retour au portfolio',
+    heroTitle: 'Fuites de Bases de Données en France',
+    heroSubtitle: 'BreachForums, saisies FBI/DOJ et protection des données personnelles',
+    alert: '<strong>Alerte :</strong> En 2024, plus de 100 millions de données personnelles de Français ont été exposées suite à des fuites massives. Vos données sont peut-être déjà en vente.',
+    h2Titles: [
+      'BreachForums - Le marché noir des données volées',
+      'Les fuites majeures en France (2024)',
+      'Comment les données fuitent - Le cycle d\'une fuite',
+      'Comment se protéger - Directives concrètes'
+    ],
+    firstCards: {
+      titles: ['Qu\'est-ce que BreachForums ?', 'Saisie par le FBI/DOJ (Mai 2024)'],
+      paragraphs: [
+        ['BreachForums est un <strong>forum du dark web</strong> où des hackers vendent, échangent et partagent des bases de données volées.', 'C\'est le <strong>successeur de RaidForums</strong>, fermé par le FBI en avril 2022. Le site est devenu la principale plateforme mondiale pour le commerce de données volées.'],
+        ['En <strong>mai 2024</strong>, le FBI en collaboration avec des agences européennes (dont la gendarmerie française) a saisi BreachForums.', '<strong>Mais...</strong> le forum a resurgi quelques semaines plus tard sous un nouveau domaine, prouvant la résilience de cet écosystème.']
+      ],
+      lists: [
+        ['Vente de bases de données complètes', 'Échange d\'identifiants volés', 'Tutoriels de hacking', 'Services de piratage sur commande'],
+        ['<strong>Baphomet</strong> (fondateur) arrêté', '<strong>ShinyHunters</strong> (admin) interpellé', 'Bandeau "THIS WEBSITE HAS BEEN SEIZED" affiché', 'Serveurs et domaines confisqués']
+      ]
+    },
+    statsLabels: ['Dossiers France Travail', 'Clients Free touchés', 'Assurés santé exposés', 'Total données exposées'],
+    tableHeaders: ['Entreprise', 'Données exposées', 'Impact', 'Gravité'],
+    tableRows: [
+      ['<strong>France Travail / Pôle Emploi</strong>', 'Nom, NIR (n° sécu), adresse, téléphone', '43 millions de personnes', 'Critique'],
+      ['<strong>Free</strong>', 'Nom, email, IBAN, adresse', '19 millions de clients', 'Critique'],
+      ['<strong>Viamedis / Almerys</strong>', 'Données de santé, n° sécu', '33 millions d\'assurés', 'Critique'],
+      ['<strong>SFR</strong>', 'Nom, email, données client', 'Plusieurs millions', 'Élevé'],
+      ['<strong>Boulanger / Cultura / Truffaut</strong>', 'Nom, adresse, historique achats', 'Prestataire commun compromis', 'Élevé']
+    ],
+    flowSteps: ['Entreprise vulnérable', 'Attaque (SQLi, Phishing, Prestataire)', 'Base extraite et chiffrée', 'Vendue sur BreachForums', 'Phishing / Usurpation'],
+    secondCards: {
+      titles: ['Vecteurs d\'attaque principaux', 'Qui sont les attaquants ?'],
+      lists: [
+        ['<strong>Tiers de confiance compromis</strong> - Prestataires cloud mal configurés (cas Free, Boulanger)', '<strong>Injection SQL</strong> - Failles dans les formulaires web', '<strong>Credential stuffing</strong> - Réutilisation de mots de passe volés', '<strong>Phishing ciblé</strong> - Emails frauduleux aux employés', '<strong>Ransomware + exfiltration</strong> - Double extorsion : payer ne suffit plus'],
+        ['<strong>ShinyHunters</strong> - Groupe franco-marocain, responsable de nombreuses fuites', '<strong>Groupes ransomware</strong> - LockBit, BlackCat, Clop', '<strong>Script kiddies</strong> - Utilisent des outils automatisés', '<strong>Acteurs étatiques</strong> - Espionnage industriel et politique']
+      ]
+    },
+    protectionCards: {
+      titles: ['Pour les particuliers', 'Pour les entreprises'],
+      lists: [
+        ['<strong>Vérifier vos emails</strong> sur <a href="https://haveibeenpwned.com" target="_blank" rel="noopener" style="color: #00cc66;">haveibeenpwned.com</a>', '<strong>Mot de passe unique</strong> par service (utilisez Bitwarden ou KeePass)', '<strong>Activer le MFA</strong> (authentification à deux facteurs) partout', '<strong>Email alias</strong> avec SimpleLogin ou Proton', '<strong>Surveiller vos IBAN</strong> après une fuite bancaire', '<strong>Ne jamais réutiliser</strong> un mot de passe compromis'],
+        ['<strong>Audit RGPD</strong> + tests de pénétration réguliers', '<strong>Principe du moindre privilège</strong> pour les accès', '<strong>Chiffrement</strong> des données au repos et en transit', '<strong>Plan de réponse</strong> à incident documenté', '<strong>Notification CNIL</strong> obligatoire sous 72h', '<strong>Formation</strong> des employés au phishing']
+      ]
+    },
+    ctaTitle: 'Vérifiez si vos données ont fuité',
+    ctaText: 'Tapez votre email sur ces outils pour savoir si vous êtes concerné :',
+    conclusionTitle: 'Pourquoi c\'est important ?',
+    conclusionIntro: 'La CNIL a infligé plus de <strong>100 millions d\'euros d\'amendes RGPD</strong> depuis 2019 en France. Malgré cela, les fuites se multiplient.',
+    conclusionLead: 'Chaque fuite peut mener à :',
+    conclusionList: ['<strong>Usurpation d\'identité</strong> - Crédits contractés à votre nom', '<strong>Phishing ciblé</strong> - Arnaques personnalisées avec vos vraies infos', '<strong>Fraude bancaire</strong> - Prélèvements non autorisés avec votre IBAN', '<strong>Chantage</strong> - Menaces de divulgation de données sensibles'],
+    conclusionFinal: 'La vigilance n\'est plus une option, c\'est une nécessité.',
+    sourcesTitle: 'Sources et références',
+    backWatch: 'Retourner à l\'onglet Veille',
+    footer1: 'Eliès ASKRI - Étudiant en BTS SIO, option SISR à l\'IPSSI',
+    footer2: 'Email : <a href="mailto:askri.elies@gmail.com">askri.elies@gmail.com</a> | LinkedIn : <a href="https://www.linkedin.com/in/elies-askri" target="_blank" rel="noopener">Eliès ASKRI</a>',
+    footer3: '© 2025 Eliès ASKRI - Tous droits réservés'
+  },
+  en: {
+    title: 'Technology Watch - Data Breaches in France | Eliès ASKRI Portfolio',
+    description: 'Technology watch on major data breaches in France, BreachForums, and practical ways to protect personal data.',
+    toggle: 'Français',
+    toggleAria: 'Switch this page back to French',
+    back: 'Back to the portfolio',
+    heroTitle: 'Data Breaches in France',
+    heroSubtitle: 'BreachForums, FBI/DOJ takedowns, and practical ways to protect personal data',
+    alert: '<strong>Alert:</strong> In 2024 alone, more than 100 million personal records linked to French citizens were exposed in large-scale breaches. Your data may already be circulating online.',
+    h2Titles: [
+      'BreachForums - The Black Market for Stolen Data',
+      'Major Breaches in France (2024)',
+      'How Data Leaks Happen - The Lifecycle of a Breach',
+      'How to Protect Yourself - Practical Guidance'
+    ],
+    firstCards: {
+      titles: ['What is BreachForums?', 'FBI/DOJ Takedown (May 2024)'],
+      paragraphs: [
+        ['BreachForums is a <strong>dark web forum</strong> where threat actors buy, sell, exchange, and leak stolen databases.', 'It became the <strong>successor to RaidForums</strong>, which was shut down by the FBI in April 2022. Since then, it has grown into one of the most visible marketplaces for stolen data worldwide.'],
+        ['In <strong>May 2024</strong>, the FBI, together with several European agencies, including the French gendarmerie, seized BreachForums.', '<strong>However...</strong> the forum resurfaced a few weeks later under a different domain, which shows how resilient this ecosystem remains.']
+      ],
+      lists: [
+        ['Sales of full database dumps', 'Trading in stolen credentials', 'Hacking tutorials and playbooks', 'On-demand intrusion and criminal services'],
+        ['<strong>Baphomet</strong> (founder) arrested', '<strong>ShinyHunters</strong> (administrator) identified and targeted', 'The banner "THIS WEBSITE HAS BEEN SEIZED" was displayed', 'Servers and domains were confiscated']
+      ]
+    },
+    statsLabels: ['France Travail records', 'Free customers affected', 'Health policyholders exposed', 'Total records exposed'],
+    tableHeaders: ['Organisation', 'Data exposed', 'Scale of impact', 'Severity'],
+    tableRows: [
+      ['<strong>France Travail / Pôle Emploi</strong>', 'Name, national ID number, address, phone number', '43 million individuals', 'Critical'],
+      ['<strong>Free</strong>', 'Name, email, IBAN, address', '19 million customers', 'Critical'],
+      ['<strong>Viamedis / Almerys</strong>', 'Health-related data, social security number', '33 million policyholders', 'Critical'],
+      ['<strong>SFR</strong>', 'Name, email, customer data', 'Several million users', 'High'],
+      ['<strong>Boulanger / Cultura / Truffaut</strong>', 'Name, address, purchase history', 'Shared service provider compromised', 'High']
+    ],
+    flowSteps: ['Vulnerable organisation', 'Attack vector (SQLi, phishing, vendor)', 'Database extracted and packaged', 'Offered on BreachForums', 'Phishing / identity misuse'],
+    secondCards: {
+      titles: ['Main Attack Paths', 'Who are the attackers?'],
+      lists: [
+        ['<strong>Compromised trusted third parties</strong> - poorly secured cloud or service providers (as seen in the Free and Boulanger cases)', '<strong>SQL injection</strong> - weaknesses in web forms and applications', '<strong>Credential stuffing</strong> - reuse of credentials leaked elsewhere', '<strong>Targeted phishing</strong> - fraudulent messages sent to employees', '<strong>Ransomware with exfiltration</strong> - double extortion means paying is no longer enough'],
+        ['<strong>ShinyHunters</strong> - a high-profile French-Moroccan group linked to numerous breaches', '<strong>Ransomware groups</strong> - including LockBit, BlackCat, and Clop', '<strong>Script kiddies</strong> - operators relying on automated tooling', '<strong>State-sponsored actors</strong> - involved in industrial and political espionage']
+      ]
+    },
+    protectionCards: {
+      titles: ['For individuals', 'For organisations'],
+      lists: [
+        ['<strong>Check your email addresses</strong> on <a href="https://haveibeenpwned.com" target="_blank" rel="noopener" style="color: #00cc66;">haveibeenpwned.com</a>', '<strong>Use a unique password</strong> for every service (with Bitwarden or KeePass)', '<strong>Enable MFA</strong> wherever possible', '<strong>Use email aliases</strong> with tools such as SimpleLogin or Proton', '<strong>Monitor your bank details</strong> after any banking-related leak', '<strong>Never reuse</strong> a password that has already been compromised'],
+        ['<strong>Run GDPR audits</strong> and regular penetration tests', '<strong>Apply least-privilege access</strong> across the organisation', '<strong>Encrypt data</strong> both at rest and in transit', '<strong>Maintain an incident response plan</strong> that is documented and tested', '<strong>Notify the CNIL</strong> within 72 hours when required', '<strong>Train employees</strong> to identify phishing attempts']
+      ]
+    },
+    ctaTitle: 'Check whether your data has already leaked',
+    ctaText: 'Use the tools below to see whether your email address appears in known breaches:',
+    conclusionTitle: 'Why does this matter?',
+    conclusionIntro: 'Since 2019, the CNIL has issued more than <strong>100 million euros in GDPR fines</strong> in France. Even so, large-scale data leaks keep happening.',
+    conclusionLead: 'A single breach can lead to:',
+    conclusionList: ['<strong>Identity theft</strong> - loans or accounts opened in your name', '<strong>Targeted phishing</strong> - scams built around your real personal data', '<strong>Banking fraud</strong> - unauthorized withdrawals using leaked financial details', '<strong>Blackmail</strong> - threats involving the release of sensitive information'],
+    conclusionFinal: 'Vigilance is no longer optional; it is essential.',
+    sourcesTitle: 'Sources and references',
+    backWatch: 'Back to the Technology Watch section',
+    footer1: 'Eliès ASKRI - BTS SIO student, SISR track, at IPSSI',
+    footer2: 'Email: <a href="mailto:askri.elies@gmail.com">askri.elies@gmail.com</a> | LinkedIn: <a href="https://www.linkedin.com/in/elies-askri" target="_blank" rel="noopener">Eliès ASKRI</a>',
+    footer3: '© 2025 Eliès ASKRI - All rights reserved'
+  }
+};
+
+function setTextList(selector, values) {
+  const elements = document.querySelectorAll(selector);
+  elements.forEach((element, index) => {
+    if (values[index] !== undefined) {
+      element.textContent = values[index];
+    }
+  });
+}
+
+function setHTMLList(selector, values) {
+  const elements = document.querySelectorAll(selector);
+  elements.forEach((element, index) => {
+    if (values[index] !== undefined) {
+      element.innerHTML = values[index];
+    }
+  });
+}
+
+function applyPageLanguage(lang) {
+  const t = PAGE_TRANSLATIONS[lang] || PAGE_TRANSLATIONS.fr;
+  const h2s = document.querySelectorAll('.page-container > h2');
+  const statLabels = document.querySelectorAll('.stat-label');
+  const tableHeaders = document.querySelectorAll('.compare-table th');
+  const tableRows = document.querySelectorAll('.compare-table tbody tr');
+  const flowSteps = document.querySelectorAll('.flow-step p');
+  const grids = document.querySelectorAll('.section-grid');
+  const firstGridCards = grids[0].querySelectorAll('.info-card');
+  const secondGridCards = grids[1].querySelectorAll('.info-card');
+  const protectionCards = grids[2].querySelectorAll('.info-card');
+  const metaDescription = document.querySelector('meta[name="description"]');
+
+  pageLanguage = lang;
+  document.documentElement.lang = lang === 'en' ? 'en' : 'fr';
+  document.title = t.title;
+  if (metaDescription) {
+    metaDescription.setAttribute('content', t.description);
+  }
+
+  document.querySelectorAll('.back-btn-label')[0].textContent = t.back;
+  document.querySelectorAll('.back-btn-label')[1].textContent = t.backWatch;
+  document.getElementById('page-language-toggle').textContent = t.toggle;
+  document.getElementById('page-language-toggle').setAttribute('aria-label', t.toggleAria);
+  document.querySelector('.hero-section h1').textContent = t.heroTitle;
+  document.querySelector('.hero-section .subtitle').textContent = t.heroSubtitle;
+  document.querySelector('.alert-banner p').innerHTML = t.alert;
+
+  h2s.forEach((heading, index) => {
+    if (t.h2Titles[index] !== undefined) {
+      heading.lastChild.textContent = ' ' + t.h2Titles[index];
+    }
+  });
+
+  const breachParagraphs = firstGridCards[0].querySelectorAll('p');
+  const seizureParagraphs = firstGridCards[1].querySelectorAll('p');
+  firstGridCards[0].querySelector('h3').textContent = t.firstCards.titles[0];
+  firstGridCards[1].querySelector('h3').textContent = t.firstCards.titles[1];
+  breachParagraphs[0].innerHTML = t.firstCards.paragraphs[0][0];
+  breachParagraphs[1].innerHTML = t.firstCards.paragraphs[0][1];
+  seizureParagraphs[0].innerHTML = t.firstCards.paragraphs[1][0];
+  seizureParagraphs[1].innerHTML = t.firstCards.paragraphs[1][1];
+  firstGridCards[0].querySelectorAll('li').forEach((item, index) => {
+    item.innerHTML = t.firstCards.lists[0][index];
+  });
+  firstGridCards[1].querySelectorAll('li').forEach((item, index) => {
+    item.innerHTML = t.firstCards.lists[1][index];
+  });
+
+  statLabels.forEach((label, index) => {
+    if (t.statsLabels[index] !== undefined) {
+      label.textContent = t.statsLabels[index];
+    }
+  });
+
+  tableHeaders.forEach((header, index) => {
+    if (t.tableHeaders[index] !== undefined) {
+      header.textContent = t.tableHeaders[index];
+    }
+  });
+
+  tableRows.forEach((row, rowIndex) => {
+    const cells = row.querySelectorAll('td');
+    if (t.tableRows[rowIndex]) {
+      t.tableRows[rowIndex].forEach((cellValue, cellIndex) => {
+        if (cells[cellIndex]) {
+          if (cellIndex === 3) {
+            const badge = cells[cellIndex].querySelector('.badge');
+            if (badge) badge.textContent = cellValue;
+          } else {
+            cells[cellIndex].innerHTML = cellValue;
+          }
+        }
+      });
+    }
+  });
+
+  setTextList('.flow-step p', t.flowSteps);
+
+  secondGridCards[0].querySelector('h3').textContent = t.secondCards.titles[0];
+  secondGridCards[1].querySelector('h3').textContent = t.secondCards.titles[1];
+  secondGridCards[0].querySelectorAll('li').forEach((item, index) => {
+    item.innerHTML = t.secondCards.lists[0][index];
+  });
+  secondGridCards[1].querySelectorAll('li').forEach((item, index) => {
+    item.innerHTML = t.secondCards.lists[1][index];
+  });
+
+  protectionCards[0].querySelector('h3').textContent = t.protectionCards.titles[0];
+  protectionCards[1].querySelector('h3').textContent = t.protectionCards.titles[1];
+  protectionCards[0].querySelectorAll('li').forEach((item, index) => {
+    item.innerHTML = t.protectionCards.lists[0][index];
+  });
+  protectionCards[1].querySelectorAll('li').forEach((item, index) => {
+    item.innerHTML = t.protectionCards.lists[1][index];
+  });
+
+  document.querySelector('.cta-section h3').lastChild.textContent = ' ' + t.ctaTitle;
+  document.querySelector('.cta-section p').textContent = t.ctaText;
+
+  document.querySelector('.page-container > .info-card h3').textContent = t.conclusionTitle;
+  const conclusionBlock = document.querySelector('.page-container > .info-card');
+  const conclusionParagraphs = conclusionBlock.querySelectorAll('p');
+  conclusionParagraphs[0].innerHTML = t.conclusionIntro;
+  conclusionParagraphs[1].textContent = t.conclusionLead;
+  setHTMLList('.page-container > .info-card li', t.conclusionList);
+  conclusionParagraphs[2].textContent = t.conclusionFinal;
+
+  document.querySelector('.sources-section h4').lastChild.textContent = ' ' + t.sourcesTitle;
+  document.querySelector('footer p:nth-of-type(1)').textContent = t.footer1;
+  document.querySelector('footer p:nth-of-type(2)').innerHTML = t.footer2;
+  document.querySelector('footer p:nth-of-type(3)').textContent = t.footer3;
+
+  localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
+}
+
+function initPageLanguageToggle() {
+  const toggle = document.getElementById('page-language-toggle');
+  if (!toggle) return;
+
+  applyPageLanguage(pageLanguage);
+
+  toggle.addEventListener('click', () => {
+    pageLanguage = pageLanguage === 'fr' ? 'en' : 'fr';
+    applyPageLanguage(pageLanguage);
+  });
+}
+
 // === ANIMATION BACKGROUND HACKER - COMMANDES POWERSHELL ===
 const CONFIG = {
   nbCommandLines: 12,
@@ -931,6 +1229,7 @@ function animateCmdBg() {
   requestAnimationFrame(animateCmdBg);
 }
 
+initPageLanguageToggle();
 setupCmdBg();
 requestAnimationFrame(animateCmdBg);
 window.addEventListener('resize', setupCmdBg);
