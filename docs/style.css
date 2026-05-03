@@ -131,15 +131,13 @@ header p {
 /* === Navigation === */
 nav {
   background: linear-gradient(180deg, var(--bg-darker) 0%, rgba(1, 36, 86, 0.95) 100%);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 4px;
+  column-gap: 16px;
   padding: 10px 16px;
   border-bottom: 2px solid var(--primary-blue);
   box-shadow: 0 4px 20px rgba(0, 51, 102, 0.4);
-  position: relative;
 }
 
 .nav-links {
@@ -148,7 +146,7 @@ nav {
   justify-content: center;
   align-items: center;
   gap: 4px;
-  margin: 0 auto;
+  min-width: 0;
 }
 
 nav a {
@@ -192,10 +190,6 @@ nav a.active::after {
 }
 
 .language-toggle {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -2268,6 +2262,14 @@ li {
 
   .nav-links {
     width: 100%;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
   }
 
   .language-toggle {
