@@ -99,6 +99,7 @@ header {
   text-align: center;
   border-bottom: 3px solid var(--primary-blue);
   box-shadow: 0 0 25px rgba(0, 51, 102, 0.5), 0 0 60px rgba(0, 120, 215, 0.25) inset;
+  position: relative;
 }
 
 header h1 {
@@ -131,10 +132,11 @@ header p {
 /* === Navigation === */
 nav {
   background: linear-gradient(180deg, var(--bg-darker) 0%, rgba(1, 36, 86, 0.95) 100%);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  column-gap: 16px;
+  gap: 4px;
   padding: 10px 16px;
   border-bottom: 2px solid var(--primary-blue);
   box-shadow: 0 4px 20px rgba(0, 51, 102, 0.4);
@@ -146,7 +148,7 @@ nav {
   justify-content: center;
   align-items: center;
   gap: 4px;
-  min-width: 0;
+  margin: 0 auto;
 }
 
 nav a {
@@ -190,6 +192,9 @@ nav a.active::after {
 }
 
 .language-toggle {
+  position: absolute;
+  top: 18px;
+  right: 16px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -2262,14 +2267,6 @@ li {
 
   .nav-links {
     width: 100%;
-  }
-
-  nav {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 4px;
   }
 
   .language-toggle {
